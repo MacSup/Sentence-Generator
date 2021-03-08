@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdverbController;
+use App\Http\Controllers\AdjectiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,4 @@ use App\Http\Controllers\AdverbController;
 */
 
 Route::get('/adverbs/random', [AdverbController::class, 'random']);
+Route::get('/adjectives/random', [AdjectiveController::class, 'random']);
