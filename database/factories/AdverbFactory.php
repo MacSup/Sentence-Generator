@@ -22,7 +22,7 @@ class AdverbFactory extends Factory
     public function definition()
     {
         return [
-            'content' => 'adverb' . (string) random_int(0, 10)
+            'content' => 'adverb' . (string) random_int(0, 100)
         ];
     }
 }

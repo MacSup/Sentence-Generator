@@ -12,7 +12,7 @@ class ApiAdverbTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_example()
+    public function test_can_fetch_5_random_adverbs()
     {
         Adverb::factory()->count(15)->create();
 
