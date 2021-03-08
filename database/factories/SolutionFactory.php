@@ -22,7 +22,7 @@ class SolutionFactory extends Factory
     public function definition()
     {
         return [
-            'content' => 'situation' . (string) random_int(0, 100)
+            'content' => 'solution' . (string) random_int(0, 100)
         ];
     }
 }
