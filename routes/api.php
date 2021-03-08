@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdverbController;
 use App\Http\Controllers\AdjectiveController;
 use App\Http\Controllers\SituationController;
+use App\Http\Controllers\ObjectiveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,4 @@ use App\Http\Controllers\SituationController;
 Route::get('/adverbs/random', [AdverbController::class, 'random']);
 Route::get('/adjectives/random', [AdjectiveController::class, 'random']);
 Route::get('/situations/random', [SituationController::class, 'random']);
+Route::get('/objectives/random', [ObjectiveController::class, 'random']);

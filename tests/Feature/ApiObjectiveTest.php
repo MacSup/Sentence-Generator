@@ -6,17 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use App\Models\Situation;
+use App\Models\Objective;
 
-class ApiSituationTest extends TestCase
+class ApiObjectiveTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_can_fetch_5_random_situations()
+    public function test_can_fetch_5_random_objectives()
     {
-        Situation::factory()->count(15)->create();
+        Objective::factory()->count(15)->create();
 
-        $response = $this->get('/api/situations/random');
+        $response = $this->get('/api/objectives/random');
 
         $response->assertStatus(200)
             ->assertJsonCount(5);
