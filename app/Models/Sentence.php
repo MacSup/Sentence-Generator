@@ -8,9 +8,9 @@ class Sentence extends Model
 {
     protected $fillable = ['content'];
 
-    public function hasStories()
+    public function stories()
     {
-        return $this->belongsToMany(Story::class);
+        return $this->hasMany(Story::class);
     }
 
     public static function randomelyChose(int $number)
