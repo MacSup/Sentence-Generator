@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use App\Models\Adverb;
+use Database\Seeders\AdverbSeeder;
 
 class ApiAdverbTest extends TestCase
 {
@@ -14,7 +14,7 @@ class ApiAdverbTest extends TestCase
 
     public function test_can_fetch_5_random_adverbs()
     {
-        Adverb::factory()->count(15)->create();
+        $this->seed(AdverbSeeder::class);
 
         $response = $this->get('/api/adverbs/random');
 

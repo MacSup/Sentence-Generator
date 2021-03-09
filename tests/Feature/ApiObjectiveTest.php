@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use App\Models\Objective;
+use Database\Seeders\ObjectiveSeeder;
 
 class ApiObjectiveTest extends TestCase
 {
@@ -14,7 +14,7 @@ class ApiObjectiveTest extends TestCase
 
     public function test_can_fetch_5_random_objectives()
     {
-        Objective::factory()->count(15)->create();
+        $this->seed(ObjectiveSeeder::class);
 
         $response = $this->get('/api/objectives/random');
 

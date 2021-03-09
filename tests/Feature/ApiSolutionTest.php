@@ -6,15 +6,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use App\Models\Solution;
+use Database\Seeders\SolutionSeeder;
 
 class ApiSolutionTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected $seed = true;
+
     public function test_can_fetch_5_random_solutions()
     {
-        Solution::factory()->count(15)->create();
+        $this->seed(SolutionSeeder::class);
 
         $response = $this->get('/api/solutions/random');
 
