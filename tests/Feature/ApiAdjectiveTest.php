@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-use App\Models\Adjective;
+use Database\Seeders\AdjectiveSeeder;
 
 class ApiAdjectiveTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ApiAdjectiveTest extends TestCase
      */
     public function test_can_fetch_5_random_adjectives()
     {
-        Adjective::factory()->count(15)->create();
+        $this->seed(AdjectiveSeeder::class);
 
         $response = $this->get('/api/adjectives/random');
 
