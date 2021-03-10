@@ -19,4 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/generator', [StoryController::class, 'create']);
 Route::post('/story', [StoryController::class, 'store']);

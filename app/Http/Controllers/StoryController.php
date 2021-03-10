@@ -14,7 +14,7 @@ class StoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('generator');
     }
 
     /**
