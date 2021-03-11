@@ -8,6 +8,7 @@ use App\Http\Controllers\AdjectiveController;
 use App\Http\Controllers\SituationController;
 use App\Http\Controllers\ObjectiveController;
 use App\Http\Controllers\SolutionController;
+use App\Http\Controllers\SentenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('/adjectives/random/{number}', [AdjectiveController::class, 'random']
 Route::get('/situations/random/{number}', [SituationController::class, 'random']);
 Route::get('/objectives/random/{number}', [ObjectiveController::class, 'random']);
 Route::get('/solutions/random/{number}', [SolutionController::class, 'random']);
+
+Route::apiResource('/sentences', SentenceController::class)->except(['update', 'destroy']);
