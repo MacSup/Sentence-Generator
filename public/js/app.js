@@ -1875,28 +1875,35 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      'adverbs': null,
-      'adjectives': null,
-      'situations': null,
-      'objectives': null,
-      'solutions': null
+      choices: {
+        'adverbs': null,
+        'adjectives': null,
+        'situations': null,
+        'objectives': null,
+        'solutions': null
+      }
     };
   },
   created: function created() {
-    this.fetchRandomSuggestions('adverbs');
-    this.fetchRandomSuggestions('adjectives');
-    this.fetchRandomSuggestions('situations');
-    this.fetchRandomSuggestions('objectives');
-    this.fetchRandomSuggestions('solutions');
+    this.fetchRandomSuggestions('adverbs', 5);
+    this.fetchRandomSuggestions('adjectives', 5);
+    this.fetchRandomSuggestions('situations', 5);
+    this.fetchRandomSuggestions('objectives', 5);
+    this.fetchRandomSuggestions('solutions', 1);
   },
   methods: {
-    fetchRandomSuggestions: function fetchRandomSuggestions(type) {
+    fetchRandomSuggestions: function fetchRandomSuggestions(type, number) {
       var _this = this;
 
-      var uri = "api/".concat(type, "/random");
+      var uri = "api/".concat(type, "/random/").concat(number);
       axios.get(uri).then(function (response) {
-        return _this[type] = response;
+        if (response.status == 200) {
+          _this['choices'][type] = response.data;
+        }
       });
+    },
+    submitNewSentence: function submitNewSentence() {
+      axios.post('/story');
     }
   }
 });
@@ -1918,7 +1925,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['id', 'story'],
+  data: function data() {
+    return {
+      sentence: ''
+    };
+  },
+  methods: {
+    createSentence: function createSentence(adverb, adjective, situation, objective, solution) {
+      return "Ce que je trouve ".concat(adverb, " ").concat(adjective, ", \n                c'est quand ").concat(situation, ".\n                Du coup, pour ").concat(objective, ", ").concat(solution);
+    }
+  }
+});
 
 /***/ }),
 
