@@ -26,7 +26,7 @@ class Story extends Model
 
     public function dealWithImage($file)
     {
-        $path = Storage::putFile(storage_path('app/public'), $file);
+        $path = Storage::putFile('public', $file);
         $this->file = $path;
 
         return $this;

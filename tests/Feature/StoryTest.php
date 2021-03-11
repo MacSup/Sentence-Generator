@@ -100,7 +100,7 @@ class StoryTest extends TestCase
         $response->assertStatus(200);
         $this->assertDatabaseCount('stories', 1);
 
-        Storage::assertExists(storage_path('app/public/'.$file->hashName()));
+        Storage::assertExists('public/'.$file->hashName());
     }
 
     public function test_can_get_all_stoties()
