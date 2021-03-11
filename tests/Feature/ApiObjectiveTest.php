@@ -16,7 +16,7 @@ class ApiObjectiveTest extends TestCase
     {
         $this->seed(ObjectiveSeeder::class);
 
-        $response = $this->get('/api/objectives/random');
+        $response = $this->get('/api/objectives/random/5');
 
         $response->assertStatus(200)
             ->assertJsonCount(5);

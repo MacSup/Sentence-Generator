@@ -16,7 +16,7 @@ class ApiAdverbTest extends TestCase
     {
         $this->seed(AdverbSeeder::class);
 
-        $response = $this->get('/api/adverbs/random');
+        $response = $this->get('/api/adverbs/random/5');
 
         $response->assertStatus(200)
             ->assertJsonCount(5);

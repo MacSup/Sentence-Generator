@@ -55,7 +55,7 @@ class StoryTest extends TestCase
 
     public function test_can_post_a_new_story()
     {
-        $response = $this->post('/story', [
+        $response = $this->post('/api/sentences', [
             'adverb' => $this->adverb->content,
             'adjective' => $this->adjective->content,
             'situation' => $this->situation->content,

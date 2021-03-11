@@ -18,7 +18,7 @@ class ApiSolutionTest extends TestCase
     {
         $this->seed(SolutionSeeder::class);
 
-        $response = $this->get('/api/solutions/random');
+        $response = $this->get('/api/solutions/random/5');
 
         $response->assertStatus(200)
             ->assertJsonCount(5);
