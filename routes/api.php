@@ -27,4 +27,4 @@ Route::get('/situations/random/{number}', [SituationController::class, 'random']
 Route::get('/objectives/random/{number}', [ObjectiveController::class, 'random']);
 Route::get('/solutions/random/{number}', [SolutionController::class, 'random']);
 
-Route::apiResource('/sentences', SentenceController::class)->except(['update', 'destroy']);
+Route::apiResource('/stories', SentenceController::class)->except(['update', 'destroy']);

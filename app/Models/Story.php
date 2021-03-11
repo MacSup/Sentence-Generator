@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Support\Facades\Storage;
+
 class Story extends Model
 {
     use HasFactory;
@@ -13,20 +15,19 @@ class Story extends Model
 
     public function populateWords($words)
     {
-        $this->adverb()->associate(Adverb::where('content', $words['adverb'])->first());
-        $this->adjective()->associate(Adjective::where('content', $words['adjective'])->first());
-        $this->situation()->associate(Situation::where('content', $words['situation'])->first());
-        $this->objective()->associate(Objective::where('content', $words['objective'])->first());
-        $this->solution()->associate(Solution::where('content', $words['solution'])->first());
+        $this->adverb()->associate(Adverb::find($words['adverb'])->first());
+        $this->adjective()->associate(Adjective::find($words['adjective'])->first());
+        $this->situation()->associate(Situation::find($words['situation'])->first());
+        $this->objective()->associate(Objective::find($words['objective'])->first());
+        $this->solution()->associate(Solution::find($words['solution'])->first());
 
         return $this;
     }
 
-    public function dealWithImage($record, $file)
+    public function dealWithImage($file)
     {
-        $path = putFile($file);
-
-        $record->file = $path;
+        $path = Storage::putFile(storage_path('app/public'), $file);
+        $this->file = $path;
 
         return $this;
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Story;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoryRequest;
+
 class SentenceController extends Controller
 {
     /**
@@ -23,27 +25,13 @@ class SentenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoryRequest $request)
     {
-        $request->validate([
-            'adverb' => 'required',
-            'adjective' => 'required',
-            'situation' => 'required',
-            'objective' => 'required',
-            'solution' => 'required'
-        ]);
-
         $story = new Story();
-        $story->populateWords(
-            $request->only([
-                    'adverb',
-                    'adjective',
-                    'situation',
-                    'objective',
-                    'solution'
-                ])
-        );
-        $story->save();
+
+        $story->populateWords($request->except('snapshot'))
+            ->dealWithImage($request->file('snapshot'))
+            ->save();
     }
 
     /**
