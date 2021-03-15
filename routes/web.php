@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\StoryController;
+use App\Http\Controllers\WebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +15,6 @@ use App\Http\Controllers\StoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::post('/story', [StoryController::class, 'store']);
+Route::get('/', [WebController::class, 'home']);
+Route::get('/generator', [WebController::class, 'generator']);

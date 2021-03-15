@@ -21,7 +21,7 @@ class ApiAdjectiveTest extends TestCase
     {
         $this->seed(AdjectiveSeeder::class);
 
-        $response = $this->get('/api/adjectives/random');
+        $response = $this->get('/api/adjectives/random/5');
 
         $response->assertStatus(200)
             ->assertJsonCount(5);

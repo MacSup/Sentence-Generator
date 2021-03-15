@@ -16,7 +16,7 @@ class ApiSituationTest extends TestCase
     {
         $this->seed(SituationSeeder::class);
 
-        $response = $this->get('/api/situations/random');
+        $response = $this->get('/api/situations/random/5');
 
         $response->assertStatus(200)
             ->assertJsonCount(5);

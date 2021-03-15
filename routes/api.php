@@ -8,6 +8,7 @@ use App\Http\Controllers\AdjectiveController;
 use App\Http\Controllers\SituationController;
 use App\Http\Controllers\ObjectiveController;
 use App\Http\Controllers\SolutionController;
+use App\Http\Controllers\SentenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,10 @@ use App\Http\Controllers\SolutionController;
 |
 */
 
-Route::get('/adverbs/random', [AdverbController::class, 'random']);
-Route::get('/adjectives/random', [AdjectiveController::class, 'random']);
-Route::get('/situations/random', [SituationController::class, 'random']);
-Route::get('/objectives/random', [ObjectiveController::class, 'random']);
-Route::get('/solutions/random', [SolutionController::class, 'random']);
+Route::get('/adverbs/random/{number}', [AdverbController::class, 'random']);
+Route::get('/adjectives/random/{number}', [AdjectiveController::class, 'random']);
+Route::get('/situations/random/{number}', [SituationController::class, 'random']);
+Route::get('/objectives/random/{number}', [ObjectiveController::class, 'random']);
+Route::get('/solutions/random/{number}', [SolutionController::class, 'random']);
+
+Route::apiResource('/stories', SentenceController::class)->except(['update', 'destroy']);
