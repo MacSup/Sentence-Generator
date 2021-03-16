@@ -19,6 +19,7 @@ class CreateStoriesTable extends Migration
             $table->foreignId('adverb_id');
             $table->foreignId('adjective_id');
             $table->foreignId('situation_id');
+            $table->foreignId('complement_id');
             $table->foreignId('objective_id');
             $table->foreignId('solution_id');
             $table->timestamps();
