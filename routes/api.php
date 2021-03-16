@@ -9,6 +9,7 @@ use App\Http\Controllers\SituationController;
 use App\Http\Controllers\ObjectiveController;
 use App\Http\Controllers\SolutionController;
 use App\Http\Controllers\SentenceController;
+use App\Http\Controllers\ComplementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,5 +27,6 @@ Route::get('/adjectives/random/{number}', [AdjectiveController::class, 'random']
 Route::get('/situations/random/{number}', [SituationController::class, 'random']);
 Route::get('/objectives/random/{number}', [ObjectiveController::class, 'random']);
 Route::get('/solutions/random/{number}', [SolutionController::class, 'random']);
+Route::get('/complements/random/{number}', [ComplementController::class, 'random']);
 
 Route::apiResource('/stories', SentenceController::class)->except(['update', 'destroy']);
