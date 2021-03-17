@@ -16,7 +16,6 @@ class CreateComplementsTable extends Migration
         Schema::create('complements', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->timestamps();
         });
     }
 

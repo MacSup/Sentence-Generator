@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sentence extends Model
 {
+    public $timestamps = false;
     protected $fillable = ['content'];
 
     public function stories()
