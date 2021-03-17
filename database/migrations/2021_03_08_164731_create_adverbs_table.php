@@ -16,7 +16,6 @@ class CreateAdverbsTable extends Migration
         Schema::create('adverbs', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->timestamps();
         });
     }
 

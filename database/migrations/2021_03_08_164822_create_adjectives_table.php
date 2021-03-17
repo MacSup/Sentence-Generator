@@ -16,7 +16,6 @@ class CreateAdjectivesTable extends Migration
         Schema::create('adjectives', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->timestamps();
         });
     }
 

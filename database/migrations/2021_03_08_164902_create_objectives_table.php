@@ -16,7 +16,6 @@ class CreateObjectivesTable extends Migration
         Schema::create('objectives', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->timestamps();
         });
     }
 

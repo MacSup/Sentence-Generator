@@ -16,7 +16,6 @@ class CreateSolutionsTable extends Migration
         Schema::create('solutions', function (Blueprint $table) {
             $table->id();
             $table->text('content');
-            $table->timestamps();
         });
     }
 
