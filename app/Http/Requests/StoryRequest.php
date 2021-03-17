@@ -27,6 +27,7 @@ class StoryRequest extends FormRequest
             'adverb' => 'required|exists:adverbs,id',
             'adjective' => 'required|exists:adjectives,id',
             'situation' => 'required|exists:situations,id',
+            'complement'=> 'required/exists:complements, id',
             'objective' => 'required|exists:objectives,id',
             'solution' => 'required|exists:solutions,id',
             'snapshot' => 'required|image'

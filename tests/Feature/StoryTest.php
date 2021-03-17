@@ -15,6 +15,7 @@ use App\Models\Story;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Complement;
 
 class StoryTest extends TestCase
 {
@@ -23,6 +24,7 @@ class StoryTest extends TestCase
     protected $adverb;
     protected $adjective;
     protected $situation;
+    protected $complement;
     protected $objective;
     protected $solution;
 
@@ -33,6 +35,7 @@ class StoryTest extends TestCase
         $this->adverb = Adverb::factory()->create();
         $this->adjective = Adjective::factory()->create();
         $this->situation = Situation::factory()->create();
+        $this->complement = Complement::factory()->create();
         $this->objective = Objective::factory()->create();
         $this->solution = Solution::factory()->create();
     }
@@ -43,6 +46,7 @@ class StoryTest extends TestCase
             'adverb' => $this->adverb->id,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
+            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
             'solution' => $this->solution->id
         ];
@@ -62,6 +66,7 @@ class StoryTest extends TestCase
             'adverb' => $this->adverb->id,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
+            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
             'solution' => $this->solution->id
         ]);
@@ -76,6 +81,7 @@ class StoryTest extends TestCase
             'adverb' => $this->adverb->id + 10,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
+            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
             'solution' => $this->solution->id
         ]);
@@ -92,6 +98,7 @@ class StoryTest extends TestCase
             'adverb' => $this->adverb->id,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
+            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
             'solution' => $this->solution->id,
             'snapshot' => $file,
