@@ -8,7 +8,7 @@ class ComplementSeeder extends Seeder
 {
     use AutomateSeeder;
     
-    protected $csvIdx = 6;
+    protected $csvIdx = 5;
     protected $table = 'complements';
     /**
      * Run the database seeds.

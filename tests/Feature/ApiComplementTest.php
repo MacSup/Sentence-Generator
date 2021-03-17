@@ -16,14 +16,14 @@ class ApiComplementTest extends TestCase
      *
      * @return void
      */
-    public function test_can_fectch_5random_complements()
+    public function test_can_fectch_5_random_complements()
     {
         $this->seed(ComplementSeeder::class);
         
         $response = $this->get('/api/complements/random/5');
+        $response->dump();
 
         $response->assertStatus(200)
             ->assertJsonCount(5);
-        
     }
 }
