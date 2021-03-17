@@ -18,6 +18,7 @@ class Story extends Model
         $this->adverb()->associate(Adverb::find($words['adverb'])->first());
         $this->adjective()->associate(Adjective::find($words['adjective'])->first());
         $this->situation()->associate(Situation::find($words['situation'])->first());
+        $this->complement()->associate(Complement::find($words['complement'])->first());
         $this->objective()->associate(Objective::find($words['objective'])->first());
         $this->solution()->associate(Solution::find($words['solution'])->first());
 
@@ -45,6 +46,11 @@ class Story extends Model
     public function situation()
     {
         return $this->belongsTo(Situation::class);
+    }
+
+    public function complement()
+    {
+        return $this->belongsTo(Complement::class);
     }
 
     public function objective()

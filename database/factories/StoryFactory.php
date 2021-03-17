@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Adverb;
 use App\Models\Adjective;
 use App\Models\Situation;
+use App\Models\Complement;
 use App\Models\Objective;
 use App\Models\Solution;
 
@@ -33,6 +34,7 @@ class StoryFactory extends Factory
             'adverb_id' => Adverb::factory()->create()->id,
             'adjective_id' => Adjective::factory()->create()->id,
             'situation_id' => Situation::factory()->create()->id,
+            'complement_id' => Complement::factory()->create()->id,
             'objective_id' => Objective::factory()->create()->id,
             'solution_id' => Solution::factory()->create()->id,
             'file' => UploadedFile::fake()->image('image.jpg')->hashName()
