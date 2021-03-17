@@ -15,5 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css')
     .browserSync({
-        proxy: 'sentence-generator.local'
+        proxy: '192.168.10.10'
     });
