@@ -16,15 +16,17 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="d-flex w-100">
+        <div class="container-master container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header ?? '' }}
-                </div>
-            </header>
+            <header class="mb-auto">
+                <nav class="navbar navbar-nav-scroll fixed-top justify-content-center float-md-end">
+                    <a class="nav-link active" aria-current="page" href="#">Nos méthodes</a>
+                    <a class="nav-link" href="#">Notre équipe</a>
+                    <a class="nav-link" href="#">Nos solutions</a>
+                </nav>
+            </header>-
 
             <!-- Page Content -->
             <main>
