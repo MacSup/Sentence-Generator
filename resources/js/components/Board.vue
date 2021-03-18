@@ -1,7 +1,5 @@
 <template>
   <div class="boardWrapper">
-    <canvas ref="boardCanvas"></canvas>
-    <slot></slot>
   </div>
 </template>
 
