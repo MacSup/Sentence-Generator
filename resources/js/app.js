@@ -18,7 +18,8 @@ window.Vue = require('vue').default;
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-import App from './App.vue'
+import Board from './components/Board.vue'
+import Generator from './components/Generator.vue'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,5 +29,8 @@ import App from './App.vue'
 
 const app = new Vue({
     el: '#app',
-    render: h => h(App)
+    components: {
+        Board,
+        Generator
+    }
 });

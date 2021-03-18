@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <board></board>
     </div>  
 </template>
 
