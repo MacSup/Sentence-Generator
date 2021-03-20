@@ -16,15 +16,30 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="d-flex w-100" data-spy="scroll" data-target="#navigation" data-offset="0" style="position: relative">
-        <div class="container-master container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column"> 
+    <body class="d-flex w-100">
+        <div class="container-master d-flex w-100 h-100 mx-auto flex-column">
             <!-- Page Heading -->
             <header class="mb-auto">
-                <nav class="navbar navbar-nav-scroll fixed-top justify-content-center float-md-end" id ="navigation"> 
-                	<a class="nav-link" href="#home">Accueil</a>
-                	<a class="nav-link active" aria-current="page" href="#methods">Nos méthodes</a>
-                    <a class="nav-link" href="#team">Notre équipe</a>
-                    <a class="nav-link" href="#solutions">Nos solutions</a>
+                <nav class="navbar navbar-nav-scroll fixed-top justify-content-center float-md-end" id ="navigation">
+                    <div class="container-fluid container-navbar">
+                        <a class="navbar-brand">Crepis</a>
+
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#home">Accueil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#methods">Nos méthodes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#team">Notre équipe</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#solutions">Nos solutions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
                 </nav>
             </header>-
 
