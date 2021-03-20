@@ -11610,10 +11610,8 @@ fieldset:disabled .btn {
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #333;
-  color: #fff;
   height: 100vh;
-  line-height: 1.6;
+  line-height: 1.2;
   overflow: hidden;
 }
 
@@ -11633,35 +11631,27 @@ section {
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 100%;
   height: 100vh;
   /* Scroll Snap */
   scroll-snap-align: center;
 }
 
-section h1,
-section .h1 {
-  font-size: 4rem;
-}
-
 /* Section Images */
 
-/*
 section#home {
-    background: url() no-repeat center center/cover;
+  background: url("/img/grille.png") no-repeat center center/cover;
 }
 
 section#methods {
-    background: url() no-repeat center center/cover;
+  background: url("/img/grille.png") no-repeat center center/cover;
 }
 
 section#team {
-    background: url() no-repeat center center/cover;
+  background: url("/img/grille.png") no-repeat center center/cover;
 }
 
 section#solutions {
-    background: url() no-repeat center center/cover;
+  background: url("/img/grille.png") no-repeat center center/cover;
 }
-*/
 
 
