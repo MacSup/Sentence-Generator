@@ -3,9 +3,7 @@
         <section id="generator">
                 <div class="container">
                     <h1>Sentence generator</h1>
-                    <div class="container">
-                    	<generator></generator>
-                    </div>
+                    <generator></generator>
                 </div>
         </section>    
     </div>
