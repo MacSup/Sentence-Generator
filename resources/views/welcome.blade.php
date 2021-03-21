@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="row">
+    <div class="row" data-bs-spy="scroll" data-bs-target="#navigation" data-bs-offset="0" tabindex="0">
         <section id="home">
             <div class="container">
                 <div class="row justify-content-md-center">

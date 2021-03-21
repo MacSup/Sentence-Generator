@@ -21,7 +21,7 @@
             <!-- Page Heading -->
             <header class="mb-auto">
                 <nav class="navbar navbar-nav-scroll fixed-top justify-content-center float-md-end" id ="navigation">
-                    <div class="container-fluid container-navbar">
+                    <div class="container container-navbar">
                         <a class="navbar-brand">Crepis</a>
 
                         <ul class="nav nav-pills">
@@ -41,7 +41,7 @@
                     </div>
                     
                 </nav>
-            </header>-
+            </header>
 
             <!-- Page Content -->
             <main>

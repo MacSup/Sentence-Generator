@@ -41902,104 +41902,116 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticClass: "carousel slide",
+      attrs: { id: "carouselExampleIndicators", "data-bs-ride": "carousel" }
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "carousel-inner" }, [
+        _c("div", { staticClass: "carousel-item active" }, [
+          _c("svg", { attrs: { heigh: "1080px", width: "1080px" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "carousel-item" }, [
+          _c("svg", { attrs: { heigh: "1080px", width: "1080px" } })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "carousel-item" }, [
+          _c("svg", { attrs: { heigh: "1080px", width: "1080px" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _vm._m(2)
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "carousel-indicators" }, [
+      _c("button", {
+        staticClass: "active",
+        attrs: {
+          type: "button",
+          "data-bs-target": "#carouselExampleIndicators",
+          "data-bs-slide-to": "0",
+          "aria-current": "true",
+          "aria-label": "Slide 1"
+        }
+      }),
+      _vm._v(" "),
+      _c("button", {
+        attrs: {
+          type: "button",
+          "data-bs-target": "#carouselExampleIndicators",
+          "data-bs-slide-to": "1",
+          "aria-label": "Slide 2"
+        }
+      }),
+      _vm._v(" "),
+      _c("button", {
+        attrs: {
+          type: "button",
+          "data-bs-target": "#carouselExampleIndicators",
+          "data-bs-slide-to": "2",
+          "aria-label": "Slide 3"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c(
-      "div",
+      "button",
       {
-        staticClass: "carousel slide",
-        attrs: { id: "carouselExampleIndicators", "data-bs-ride": "carousel" }
+        staticClass: "carousel-control-prev",
+        attrs: {
+          type: "button",
+          "data-bs-target": "#carouselExampleIndicators",
+          "data-bs-slide": "prev"
+        }
       },
       [
-        _c("div", { staticClass: "carousel-indicators" }, [
-          _c("button", {
-            staticClass: "active",
-            attrs: {
-              type: "button",
-              "data-bs-target": "#carouselExampleIndicators",
-              "data-bs-slide-to": "0",
-              "aria-current": "true",
-              "aria-label": "Slide 1"
-            }
-          }),
-          _vm._v(" "),
-          _c("button", {
-            attrs: {
-              type: "button",
-              "data-bs-target": "#carouselExampleIndicators",
-              "data-bs-slide-to": "1",
-              "aria-label": "Slide 2"
-            }
-          }),
-          _vm._v(" "),
-          _c("button", {
-            attrs: {
-              type: "button",
-              "data-bs-target": "#carouselExampleIndicators",
-              "data-bs-slide-to": "2",
-              "aria-label": "Slide 3"
-            }
-          })
-        ]),
+        _c("span", {
+          staticClass: "carousel-control-prev-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
         _vm._v(" "),
-        _c("div", { staticClass: "carousel-inner" }, [
-          _c("div", { staticClass: "carousel-item active" }, [
-            _vm._v("\n            svg\n        ")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "carousel-item" }, [
-            _c("img", { staticClass: "d-block w-100", attrs: { src: "" } })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "carousel-item" }, [
-            _c("img", { staticClass: "d-block w-100", attrs: { src: "" } })
-          ])
-        ]),
+        _c("span", { staticClass: "visually-hidden" }, [_vm._v("Previous")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "carousel-control-next",
+        attrs: {
+          type: "button",
+          "data-bs-target": "#carouselExampleIndicators",
+          "data-bs-slide": "next"
+        }
+      },
+      [
+        _c("span", {
+          staticClass: "carousel-control-next-icon",
+          attrs: { "aria-hidden": "true" }
+        }),
         _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "carousel-control-prev",
-            attrs: {
-              type: "button",
-              "data-bs-target": "#carouselExampleIndicators",
-              "data-bs-slide": "prev"
-            }
-          },
-          [
-            _c("span", {
-              staticClass: "carousel-control-prev-icon",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "visually-hidden" }, [_vm._v("Previous")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "carousel-control-next",
-            attrs: {
-              type: "button",
-              "data-bs-target": "#carouselExampleIndicators",
-              "data-bs-slide": "next"
-            }
-          },
-          [
-            _c("span", {
-              staticClass: "carousel-control-next-icon",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _vm._v(" "),
-            _c("span", { staticClass: "visually-hidden" }, [_vm._v("Next")])
-          ]
-        )
+        _c("span", { staticClass: "visually-hidden" }, [_vm._v("Next")])
       ]
     )
   }
@@ -42049,7 +42061,7 @@ var staticRenderFns = [
         }
       }),
       _vm._v(" "),
-      _c("h2", [_vm._v("Générateur ")]),
+      _c("h2", [_vm._v("Générateur !! ")]),
       _vm._v(" "),
       _c("p", { staticClass: "lead" }, [
         _vm._v(
