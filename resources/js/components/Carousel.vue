@@ -7,13 +7,13 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                svg
+                <svg heigh="1080px" width="1080px"></svg>
             </div>
             <div class="carousel-item">
-            <img src="" class="d-block w-100">
+                <svg heigh="1080px" width="1080px"></svg>
             </div>
             <div class="carousel-item">
-            <img src="" class="d-block w-100">
+                <svg heigh="1080px" width="1080px"></svg>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">

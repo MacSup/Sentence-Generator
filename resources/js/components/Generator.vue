@@ -2,7 +2,7 @@
 <div class="container">
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h2>Générateur </h2>
+      <h2>Générateur !! </h2>
       <p class="lead">Générer des phrases pour lutter contre les espaces insoutenables</p>
     </div>
 
