@@ -1,79 +1,101 @@
 <template>
 <div class="container">
-        <section id="QCM">
-                <div class="col-md-12 col-lg-12">
-                    <div class="row justify-content-md-center">
-                        <h2>Générateur</h2>
-                        <p class="lead">Générer des phrases pour lutter contre les espaces insoutenables</p>
+    <section id="QCM">
+        <div class="col-md-12 col-lg-12">
+            <div class="row justify-content-md-center">
+                <h2>Générateur</h2>
+                <p class="lead">Générer des phrases pour lutter contre les espaces insoutenables</p>
+            </div>
+            <hr class="my-4"></hr>
+            <form class="needs-validation" novalidate>
+                <div class="row justify-content-md-start g-3">
+                    <div class="col-2">
+                        <h4 class="row align-items-start"> Ce que je trouve :</h4>
                     </div>
-                    <hr class="my-4"></hr>
-                    <form class="needs-validation" novalidate>
-                        <div class="row justify-content-md-start g-3">
-                            <div class="col-2">
-                                <h4 class="row align-items-start"> Ce que je trouve :</h4>
-                            </div>
-                            <div class="col-5">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Choisir un adverbe</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Autre</option>
-                                </select>
-                            </div>
-                            <div class="col-5">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Choisir une situation</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Autre</option>
-                                </select>
-                            </div>
+                    <div class="col-5">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Choisir un adverbe</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Autre</option>
+                        </select>
+                    </div>
+                    <div class="col-5">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Choisir une situation</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Autre</option>
+                        </select>
+                    </div>
 
-                            <div class="col-2 justify-content-strat">
-                                <h4 class="row align-items-start">C'est quand : </h4>
-                            </div>
-                            <div class="col-10">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Choisir un complément</option>
-                                    <option value="1">Rien</option>
-                                    <option value="2">One</option>
-                                    <option value="3">Two</option>
-                                    <option value="4">Three</option>
-                                    <option value="5">Autre</option>
-                                </select>
-                            </div>
+                    <div class="col-2">
+                        <h4 class="row align-items-start">C'est quand : </h4>
+                    </div>
+                    <div class="col-10">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Choisir un complément</option>
+                            <option value="1">Rien</option>
+                            <option value="2">One</option>
+                            <option value="3">Two</option>
+                            <option value="4">Three</option>
+                            <option value="5">Autre</option>
+                        </select>
+                    </div>
 
-                            <div class="col-2 justify-content-strat">
-                                <h4 class="row align-items-start">Du coup, pour :</h4>
-                            </div>
+                    <div class="col-2">
+                        <h4 class="row align-items-start">Du coup, pour :</h4>
+                    </div>
 
-                            <div class="col-5">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Choisir une raison</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Autre</option>
-                                </select>
-                            </div>
+                    <div class="col-5">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Choisir une raison</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Autre</option>
+                        </select>
+                    </div>
 
-                            <div class="col-5">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Choisir une solution</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                    <option value="4">Autre</option>
-                                </select>
-                            </div>
-                        </div>
-                    <hr class="my-4"></hr>
-                    <button class="btn btn-primary btn-lg" type="submit">Générer ma phrase</button>
-                    </form>
+                    <div class="col-5">
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Choisir une solution</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Autre</option>
+                        </select>
+                    </div>
                 </div>
-        </section>     
+            <hr class="my-4"></hr>
+            <button class="btn btn-primary btn-lg" href="/generator#rendu">Générer ma phrase</button>
+            </form>
+        </div>
+    </section>
+    <section id ="rendu">
+        <div class="row justify-content-md-center">
+            <div class="col-8">
+                <img src="https://img.over-blog-kiwi.com/2/15/58/99/20161125/ob_34be07_emmanuel-macron-3.jpg" class="rounded mx-auto d-block img-thumbnail">
+            </div>
+            <div class="col-4 g-3">
+                <div class="btn-group-vertical">
+                    <a class="btn btn-success" href="#"><span class="fa fa-share-alt"></span>  Partager</a>
+                    <a class="btn btn-info" href="#"><span class="fa fa-print"></span>  Enregistrer</a>
+                    <a class="btn btn-danger" href="#"><span class="fa fa-star"></span>  Surprise du chef</a>
+                    <a class="btn btn-dark" href="/#team"><span class="fa fa-user"></span>  Rejoignez-nous</a>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-md-start">
+            <h2>Pas satisfait ?</h2>
+            <button class="btn btn-primary btn-lg" href="/generator#contribution">Contribuer</button>
+        </div>
+    </section>
+    <section id="contribution">
+        <button class="btn btn-secondary btn-lg" href="/#home">Valider</button>
+    </section>     
 </div>
 </template>
 
