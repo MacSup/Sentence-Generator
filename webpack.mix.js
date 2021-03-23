@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
+    .extract(['vue', 'bootstrap'])
+    .sourceMaps()
     .sass('resources/sass/app.scss', 'public/css')
     .browserSync({
         proxy: '192.168.10.10'
