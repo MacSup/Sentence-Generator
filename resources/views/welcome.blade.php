@@ -23,18 +23,26 @@
         </nav>
     </x-slot>
 
-    <div class="container-fluid">
-        <div id="home">
-            <header class="masterhead container">
-                <video id="home-vid" autoplay loop preload>
-                    <source src="{{ asset('videos/welcome-x2.mp4') }}" type="video/mp4"> 
-                    Your browser does not support the video tag.   
+    <div class="masterhead">
+        <section id="home">
+            <header>
+                <div class="overlay"></div>
+                <video playsinline autoplay muted loop>
+                    <source src="{{ asset('/videos/welcome-x2.mp4') }}" type="video/mp4">
                 </video>
-
-                <h1 class="masterhead-title">Bienvenue au CREPIS<h1> 
-                <h4 class="masterhead-text">Centre de Recherches et d'Expérimentations Poétiques pour des Intérieurs Soutenables</h4>
+                <div class="container h-100">
+                    <div class="d-flex h-100 text-center align-items-center">
+                    <div class="w-100 text-white">
+                        <h1 class="display-3">Bienvenue au CREPIS</h1>
+                        <p class="lead mb-0">Centre de Recherches et d'Expérimentations Poétiques pour des Intérieurs Soutenables</p>
+                    </div>
+                    </div>
+                </div>
             </header>
-        </div>
+        </section>
+    </div>
+
+    <div class="container">
         <section id="about">
             <div class="container">
                 <div class="row justify-content">
