@@ -1,10 +1,45 @@
 <x-app-layout>
-    <div class="row" data-bs-spy="scroll" data-bs-target="#navigation" data-bs-offset="0" tabindex="0">
-        <section id="home">
+    <x-slot name="navbar">
+        <nav class="navbar navbar-light bg-white fixed-top shadow-sm" id ="navigation">
             <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col-8">
-                        <p class="lead">Bienvenue sur le site du CREPIS, le Centre de Recherches et d'Expérimentations Poétiques pour des Intérieurs Soutenables.<br><br>
+                <span class="navbar-brand mb-0 h1">CREPIS</span>
+
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#methods">Nos méthodes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#team">Notre équipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solutions">Nos solutions</a>
+                    </li>
+                </ul>
+            </div>
+            
+        </nav>
+    </x-slot>
+
+    <div class="container-fluid">
+        <div id="home">
+            <header class="masterhead container">
+                <video id="home-vid" autoplay loop preload>
+                    <source src="{{ asset('videos/welcome-x2.mp4') }}" type="video/mp4"> 
+                    Your browser does not support the video tag.   
+                </video>
+
+                <h1 class="masterhead-title">Bienvenue au CREPIS<h1> 
+                <h4 class="masterhead-text">Centre de Recherches et d'Expérimentations Poétiques pour des Intérieurs Soutenables</h4>
+            </header>
+        </div>
+        <section id="about">
+            <div class="container">
+                <div class="row justify-content">
+                    <div class="col-12">
+                        <p>Bienvenue sur le site du CREPIS, le Centre de Recherches et d'Expérimentations Poétiques pour des Intérieurs Soutenables.<br><br>
                                         En cette période de pandémie et de mutation des pratiques (tant économiques, que sociales, politiques, techniques, artistiques et écologiques), le groupe de recherche du CREPIS se saisit de la question des « intérieurs soutenables ». Alors que nombre de situations quotidiennes deviennent plus énervantes, révoltantes, désespérantes, anxiogènes, pénibles, crispantes ou absurdes, le CREPIS travaille à formuler des stratégies aisément réappropriables pour vous permettre de souffler un peu, tenir le coup, décompresser ou tout simplement traverser au mieux ces temps confinés.<br><br> 
                                         Bien plus qu'un think-tank, le CREPIS s'est construit dans un souci de collégialité centrée sur l’humain, partant du constat qu'efficience pouvait être conjuguée avec résilience.<br><br>
                                         Ses membres sont issu·e·s d'horizons différents mais tous animé·e·s d'une même motivation : chercher à décloisonner la pensée au-delà des limites imposées par des mesures de confinement ou autres restrictions collectives/individuelles.<br><br>
@@ -14,7 +49,6 @@
                     </div>
                 </div>
             </div>
-            
         </section>
         <section id="methods">
             <div class="container">
@@ -32,10 +66,16 @@
             <div class="container">
                 <h1>Nos solutions</h1>
 
-                <div id="app">
+                <div class="row" id="app">
                     <carousel></carousel>
                 </div>
-                <a href="/generator" class="btn btn-lg btn-info fw-bold" role="Button">Générer ma propre solution</a>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6 col-lg-4">
+                        <a href="/generator" class="btn btn-lg btn-info fw-bold" role="Button">Générer ma propre solution</a>
+                    </div>
+                    
+                </div>
             </div>
             
         </section>
