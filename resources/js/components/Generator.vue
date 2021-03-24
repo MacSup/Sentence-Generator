@@ -77,7 +77,9 @@
     <section id ="rendu">
         <div class="row justify-content-md-center">
             <div class="col-8">
-                <img src="https://img.over-blog-kiwi.com/2/15/58/99/20161125/ob_34be07_emmanuel-macron-3.jpg" class="rounded mx-auto d-block img-thumbnail">
+                <div class="app">
+                    <board></board>
+                </div>
             </div>
             <div class="col-4 g-3">
                 <div class="btn-group-vertical">
@@ -94,7 +96,37 @@
         </div>
     </section>
     <section id="contribution">
-        <button class="btn btn-secondary btn-lg" href="/#home">Valider</button>
+        <div class="col-md-12 col-lg-12">
+            <div class="row justify-content-md-center">
+                <h2>Formulaire de participation</h2>
+                <p class="lead">Partager vos solutions les plus saugrenues avec nous !</p>
+            </div>
+            <hr class="my-4"></hr>
+            <form name="zonetext" action="" method="get">
+                <div class="row justify-content-md-start g-3">
+                    <div class="col-2">
+                        <h4 class="row align-items-start"> Ce que je trouve :</h4>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" name="inputbox" value="">
+                    </div>
+                    <div class="col-2">
+                        <h4 class="row align-items-start">C'est quand : </h4>
+                    </div> 
+                    <div class="col-4">
+                        <input type="text" name="inputbox" value="">
+                    </div>
+                    <div class="col-2">
+                        <h4 class="row align-items-start">Alors : </h4>
+                    </div> 
+                    <div class="col-4">
+                        <input type="text" name="inputbox" value="">
+                    </div>
+                </div>
+                <hr class="my-4"></hr>
+                <button class="btn btn-success btn-lg" href="/#home" onclick="showData(this.form)">Valider</button>
+            </form>
+        </div>
     </section>     
 </div>
 </template>
