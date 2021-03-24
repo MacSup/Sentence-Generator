@@ -6,7 +6,7 @@
                 <h2>Générateur</h2>
                 <p class="lead">Générer des phrases pour lutter contre les espaces insoutenables</p>
             </div>
-            <hr class="my-4"></hr>
+            <hr class="my-4">
             <form class="needs-validation" novalidate>
                 <div class="row justify-content-md-start g-3">
                     <div class="col-2">
@@ -69,7 +69,7 @@
                         </select>
                     </div>
                 </div>
-            <hr class="my-4"></hr>
+            <hr class="my-4">
             <button class="btn btn-primary btn-lg" href="/generator#rendu">Générer ma phrase</button>
             </form>
         </div>
@@ -101,7 +101,7 @@
                 <h2>Formulaire de participation</h2>
                 <p class="lead">Partager vos solutions les plus saugrenues avec nous !</p>
             </div>
-            <hr class="my-4"></hr>
+            <hr class="my-4">
             <form name="zonetext" action="" method="get">
                 <div class="row justify-content-md-start g-3">
                     <div class="col-2">
@@ -123,7 +123,7 @@
                         <input type="text" name="inputbox" value="">
                     </div>
                 </div>
-                <hr class="my-4"></hr>
+                <hr class="my-4">
                 <button class="btn btn-success btn-lg" href="/#home" onclick="showData(this.form)">Valider</button>
             </form>
         </div>
