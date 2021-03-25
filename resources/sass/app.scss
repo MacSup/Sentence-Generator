@@ -90,6 +90,18 @@ section {
     scroll-snap-align: center;
 }
 
+#methods-vid {
+    width: 80%;
+    -ms-transform: translateX(10%);
+    -moz-transform: translateX(10%);
+    -webkit-transform: translateX(10%);
+    transform: translateX(10%);
+}
+
+#team-img {
+    width: 100%;
+}
+
 .carousel {
     height: 65vh;
 }

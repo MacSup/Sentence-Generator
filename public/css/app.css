@@ -13033,6 +13033,15 @@ section {
   scroll-snap-align: center;
 }
 
+#methods-vid {
+  width: 80%;
+  transform: translateX(10%);
+}
+
+#team-img {
+  width: 100%;
+}
+
 .carousel {
   height: 65vh;
 }
