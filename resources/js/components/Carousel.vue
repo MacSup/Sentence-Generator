@@ -14,7 +14,10 @@
             <div v-for="story in stories" :key="story.id"
                 class="carousel-item active"
             >
-                <img id="caroussel-img" src="story.file"></img>
+                <img 
+                    id="caroussel-img" 
+                    v-bind:src="story.file"
+                ></img>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
