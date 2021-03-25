@@ -1,5 +1,5 @@
 <x-app-layout>
-	<div id="app">
+	<div class="generator" id="app">
 		<generator></generator>
 	</div>  
 </x-app-layout>

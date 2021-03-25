@@ -1,149 +1,96 @@
 <template>
-<div class="container">
-    <section id="QCM">
-        <div class="col-md-12 col-lg-12">
-            <div class="row justify-content-md-center">
-                <h2>Générateur</h2>
-                <p class="lead">Générer des phrases pour lutter contre les espaces insoutenables</p>
-            </div>
-            <hr class="my-4">
-            <form class="needs-validation" novalidate>
-                <div class="row justify-content-md-start g-3">
-                    <div class="col-2">
-                        <h4 class="row align-items-start"> Ce que je trouve :</h4>
-                    </div>
-                    <div class="col-5">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Choisir un adverbe</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Autre</option>
-                        </select>
-                    </div>
-                    <div class="col-5">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Choisir une situation</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Autre</option>
-                        </select>
-                    </div>
+    <div class="container pt-2 h-100">
+        <header id="generator-nav" class="pb-3 mb-4 border-bottom">
+        <a class="d-flex align-items-center text-dark text-decoration-none">
+            <img src="favicon.ico" width="32" height="24" class="me-2"><title>GRIGRI</title>
+            <span class="fs-4">GRIGRI</span>
+        </a>
+        </header>
 
-                    <div class="col-2">
-                        <h4 class="row align-items-start">C'est quand : </h4>
-                    </div>
-                    <div class="col-10">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Choisir un complément</option>
-                            <option value="1">Rien</option>
-                            <option value="2">One</option>
-                            <option value="3">Two</option>
-                            <option value="4">Three</option>
-                            <option value="5">Autre</option>
-                        </select>
-                    </div>
-
-                    <div class="col-2">
-                        <h4 class="row align-items-start">Du coup, pour :</h4>
-                    </div>
-
-                    <div class="col-5">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Choisir une raison</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Autre</option>
-                        </select>
-                    </div>
-
-                    <div class="col-5">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Choisir une solution</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Autre</option>
-                        </select>
-                    </div>
-                </div>
-            <hr class="my-4">
-            <button class="btn btn-primary btn-lg" href="/generator#rendu">Générer ma phrase</button>
-            </form>
+        <div class="p-4 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-2">
+            <h3 class="fw-bold">Générateur de Réponses Incongrues pour Gérer les Risques d’Internement</h3>
+            <p class="col-md-12 fs-5">Fruit de plusieurs mois d’enquête à caractère auto-ethnographique et d’une triangulation fine et forte des données collectées, <br> le GRIGRI formule une réponse adaptée aux questions que vous pose votre intérieur confiné</p>
         </div>
-    </section>
-    <section id ="rendu">
-        <div class="row justify-content-md-center">
-            <div class="col-8">
-                <div class="app">
-                    <board></board>
+        </div>
+
+        <div id="generator-content" class="row mb-2 align-items-md-stretch">
+            <div class="col-3 pt-4">
+                <h5 class="text-center mb-2"> Comment utiliser le GRIGRI ? </h5>
+                <p>
+                    <ul>
+                        <li>Cliquez sur le bouton "Generation"</li>
+                        <li>Suivez les instructions</li>
+                        <li>Cliquez sur le bouton "Submit"</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-4 rounded-3 border">
+
+                <div id="story" class="col-10 offset-1 border" v-bind:style="{ 'background-color': generateBackgroundColor()}">
+                        <form action="">
+                            <textarea v-model="sentence" class="form-control p-4 fs-5" name="sentence" id="sentence" placeholder="Votre grigri" disabled>
+                            </textarea>
+                        </form>
+                </div>
                 </div>
             </div>
-            <div class="col-4 g-3">
-                <div class="btn-group-vertical">
-                    <a class="btn btn-success" href="#"><span class="fa fa-share-alt"></span>  Partager</a>
-                    <a class="btn btn-info" href="#"><span class="fa fa-print"></span>  Enregistrer</a>
-                    <a class="btn btn-danger" href="#"><span class="fa fa-star"></span>  Surprise du chef</a>
-                    <a class="btn btn-dark" href="/#team"><span class="fa fa-user"></span>  Rejoignez-nous</a>
+            <div class="col-2 offset-1">
+                <div class="h-100 align-self-end p-4 rounded-3 align-items-bottom">
+
+                    <div class="w-100 mb-4 btn-group-vertical">
+                        <button 
+                            type="button" 
+                            class="btn btn-outline-primary"
+                            v-on:click="submitNewSentence"
+                        >Submit</button>
+                    </div>
+                    
+                    <div class="w-100 mb-4 btn-group-vertical">
+                        <button type="button" class="btn btn-outline-primary">Génération</button>
+                        <button 
+                            type="button" 
+                            class="btn btn-outline-primary"
+                            v-on:click="sentenceAutoGeneration"
+                        >C</button>
+                    </div>
+
+                    <div class="w-100 mb-4 btn-group-vertical">
+                        <button type="button" class="btn btn-outline-primary">Partagez</button>
+                        <button type="button" class="btn btn-outline-primary">Enregistrez</button>
+                        <button type="button" class="btn btn-outline-primary">Surprise du chef</button>
+                    </div>
+
+                    <div class="w-100 btn-group-vertical">
+                        <button type="button" class="btn btn-outline-primary">Contribuez</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-md-start">
-            <h2>Pas satisfait ?</h2>
-            <button class="btn btn-primary btn-lg" href="/generator#contribution">Contribuer</button>
-        </div>
-    </section>
-    <section id="contribution">
-        <div class="col-md-12 col-lg-12">
-            <div class="row justify-content-md-center">
-                <h2>Formulaire de participation</h2>
-                <p class="lead">Partager vos solutions les plus saugrenues avec nous !</p>
-            </div>
-            <hr class="my-4">
-            <form name="zonetext" action="" method="get">
-                <div class="row justify-content-md-start g-3">
-                    <div class="col-2">
-                        <h4 class="row align-items-start"> Ce que je trouve :</h4>
-                    </div>
-                    <div class="col-4">
-                        <input type="text" name="inputbox" value="">
-                    </div>
-                    <div class="col-2">
-                        <h4 class="row align-items-start">C'est quand : </h4>
-                    </div> 
-                    <div class="col-4">
-                        <input type="text" name="inputbox" value="">
-                    </div>
-                    <div class="col-2">
-                        <h4 class="row align-items-start">Alors : </h4>
-                    </div> 
-                    <div class="col-4">
-                        <input type="text" name="inputbox" value="">
-                    </div>
-                </div>
-                <hr class="my-4">
-                <button class="btn btn-success btn-lg" href="/#home" onclick="showData(this.form)">Valider</button>
-            </form>
-        </div>
-    </section>     
-</div>
+    </div>
 </template>
 
 <script>
-import Story from './Story.vue'
 
 export default {
 
     data () {
         return {
+            sentence: null,
             choices: {
                 'adverbs': null,
                 'adjectives': null,
                 'situations': null,
                 'objectives': null,
                 'solutions': null
+            },
+            story : {
+                adverb: 0,
+                adjective: 0,
+                situation: 0,
+                objective: 0,
+                solution: 0
             }
             
         }
@@ -158,6 +105,30 @@ export default {
     },
 
     methods: {
+        sentenceAutoGeneration() {
+            let adverb = this.getRandomItem('adverb', this.choices.adverbs)
+            let adjective = this.getRandomItem('adjective', this.choices.adjectives)
+            let situation = this.getRandomItem('situation', this.choices.situations)
+            let objective = this.getRandomItem('objective', this.choices.objectives)
+
+            this.story.solution = this.choices.solutions[0].id;
+            let solution = this.choices.solutions[0].content;
+
+            this.sentence = this.generateSentence(adverb, adjective, situation, objective, solution);
+        },
+
+        getRandomItem(type, array) {
+            let item = array[Math.floor(Math.random() * array.length)];
+            console.log(item)
+            this.story[type] = item.id;
+
+            return item.content;
+        },
+
+        generateSentence(adverb, adjective, situation, objective, solution) {
+            return `Ce que je trouve ${adverb} ${adjective}, c'est quand ${situation}; du coup, pour me ${objective}, ${solution}`
+        },
+
         fetchRandomSuggestions(type, number) {
             const uri = `api/${type}/random/${number}`;
             axios.get(uri).then(response => {
@@ -169,11 +140,13 @@ export default {
 
         submitNewSentence() {
             axios.post('/story')
-        }
-    },
+        },
 
-    components: {
-        Story
+        generateBackgroundColor(){ 
+            return "hsl(" + 360 * Math.random() + ',' +
+                    (25 + 70 * Math.random()) + '%,' + 
+                    (85 + 10 * Math.random()) + '%)'
+        }
     }
 }
 </script>
