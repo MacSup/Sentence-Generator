@@ -21,8 +21,9 @@
                         <a class="nav-link" href="#solutions">Nos solutions</a>
                     </li>
                 </ul>
+                
                 <a href="https://discord.com/invite/5eGj4pbtNv">
-                    <img width="150" height="48" src="{{ asset('/images/discord.png') }}" >
+                    <img height="40" src="{{ asset('/images/discord.png') }}" >
                 </a>
             </div>
 

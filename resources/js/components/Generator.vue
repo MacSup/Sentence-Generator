@@ -30,7 +30,13 @@
 
                 <div id="story" class="col-10 offset-1 border" v-bind:style="{ 'background-color': generateBackgroundColor()}">
                         <form action="">
-                            <textarea v-model="sentence" class="form-control p-4 fs-5" name="sentence" id="sentence" placeholder="Votre grigri" disabled>
+                            <textarea 
+                                v-model="sentence" 
+                                class="form-control p-5 fs-5" 
+                                name="sentence" 
+                                id="sentence" 
+                                placeholder="Votre grigri" 
+                                v-bind:disabled="isTextAreaDisabled">
                             </textarea>
                         </form>
                 </div>
@@ -48,7 +54,12 @@
                     </div>
                     
                     <div class="w-100 mb-4 btn-group-vertical">
-                        <button type="button" class="btn btn-outline-primary">Génération</button>
+                        <button 
+                            type="button" 
+                            class="btn btn-outline-primary"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#generator-modal"
+                        >Génération</button>
                         <button 
                             type="button" 
                             class="btn btn-outline-primary"
@@ -63,20 +74,149 @@
                     </div>
 
                     <div class="w-100 btn-group-vertical">
-                        <button type="button" class="btn btn-outline-primary">Contribuez</button>
+                        <button 
+                            type="button" 
+                            class="btn btn-outline-primary"
+                            v-on:click="sentenceContribution"
+                        >Contribuez</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="generator-modal" tabindex="-1" aria-labelledby="generatormodal" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Génération</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a 
+                                        class="nav-link active" 
+                                        id="feeling-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#feeling-content" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="feeling-content" 
+                                        aria-selected="true"
+                                    >Sentiment</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a 
+                                        class="nav-link" 
+                                        id="situation-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#situation-content" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="situation-content" 
+                                        aria-selected="false"
+                                    >Situation</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a 
+                                        class="nav-link" 
+                                        id="action-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#action-content" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="action-content" 
+                                        aria-selected="false"
+                                    >Action</a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="feeling-content" role="tabpanel" aria-labelledby="feeling-tab">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 mb-3">
+                                            Choissiez votre ressentiment :  
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-check" v-for="adverb in choices.adverbs" :key="adverb.id">
+                                                <input class="form-check-input" type="checkbox" :value="adverb.id">
+                                                <label class="form-check-label">
+                                                    {{ adverb.content }}
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-check" v-for="adjective in choices.adjectives" :key="adjective.id">
+                                                <input class="form-check-input" type="checkbox" :value="adjective.id">
+                                                <label class="form-check-label">
+                                                    {{ adjective.content }}
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 mt-4">
+                                            Ce que je trouve {suite de la phrase}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="situation-content" role="tabpanel" aria-labelledby="situation-tab">
+                                    <div class="row">
+                                        <div class="col-12">
+
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check" v-for="situation in choices.situations" :key="situation.id">
+                                                <input class="form-check-input" type="checkbox" :value="situation.id">
+                                                <label class="form-check-label">
+                                                    {{ situation.content }}
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="action-content" role="tabpanel" aria-labelledby="action-tab">
+                                    <div class="row">
+                                        <div class="col-2">
+
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="form-check" v-for="objective in choices.objectives" :key="objective.id">
+                                                <input class="form-check-input" type="checkbox" :value="objective.id">
+                                                <label class="form-check-label">
+                                                    {{ objective.content }}
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button 
+                        type="button" 
+                        class="btn btn-primary"
+                    >Suivant</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
-
 export default {
 
     data () {
         return {
+            isTextAreaDisabled: true,
             sentence: null,
             choices: {
                 'adverbs': null,
@@ -115,6 +255,11 @@ export default {
             let solution = this.choices.solutions[0].content;
 
             this.sentence = this.generateSentence(adverb, adjective, situation, objective, solution);
+        },
+
+        sentenceContribution() {
+            this.isTextAreaDisabled = false;
+            this.sentence = this.generateSentence('{adverbe}', '{adjectif}', '{situation}', '{objectif}', '{solution}');
         },
 
         getRandomItem(type, array) {
