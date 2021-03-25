@@ -30,7 +30,7 @@
         </button>
     </div>
     <div v-else>
-        <h2 class="mb-5"> C'est encore bien vide par ici, participez à l'étude pour ajouter des solutions </h2>
+        <h2 class="mb-5 text-center"> C'est encore bien vide par ici, participez à l'étude pour ajouter des solutions </h2>
     </div>
 </template>
 

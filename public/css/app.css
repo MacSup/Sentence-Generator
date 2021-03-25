@@ -13027,7 +13027,6 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   height: 100vh;
   /* Scroll Snap */
   scroll-snap-align: center;

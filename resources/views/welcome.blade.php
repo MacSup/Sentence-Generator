@@ -129,7 +129,7 @@
                     <carousel></carousel>
                 </div>
 
-                <div class="row justify-content-center">
+                <div class="row text-center justify-content-center">
                     <div class="col-md-6 col-lg-4">
                         <a href="/generator" class="btn btn-lg btn-info fw-bold" role="Button">Participez à l'étude</a>
                     </div>
