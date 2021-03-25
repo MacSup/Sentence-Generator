@@ -1,19 +1,20 @@
 <template>
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div v-if="render" id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button v-for="story in stories" :key="story.id" 
+                type="button" 
+                data-bs-target="#carouselExampleIndicators" 
+                v-bind:data-bs-slide-to="story.id" 
+                class="active" 
+                aria-current="true" 
+                v-bind:aria-label="['Story', story.id + 1]"
+            ></button>
         </div>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <svg heigh="1080px" width="1080px"></svg>
-            </div>
-            <div class="carousel-item">
-                <svg heigh="1080px" width="1080px"></svg>
-            </div>
-            <div class="carousel-item">
-                <svg heigh="1080px" width="1080px"></svg>
+            <div v-for="story in stories" :key="story.id"
+                class="carousel-item active"
+            >
+                <img id="caroussel-img" src="story.file"></img>
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
@@ -25,10 +26,39 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+    <div v-else>
+        <h2 class="mb-5"> C'est encore bien vide par ici, participez à l'étude pour ajouter des solutions </h2>
+    </div>
 </template>
 
 <script>
 export default {
+    name: "Caroussel",
+
+    data () {
+        return {
+            render: false,
+            stories: []
+        }
+    },
+
+    created () {
+        this.getStories()
+    },
+
+    mounted () {
+        if (this.stories.length > 0) {
+            this.render = true
+        }
+    },
+
+    methods: {
+        getStories() {
+            axios.get('/api/sentences').then(response => {
+                this.stories = response.data
+            });
+        }
+    }
 
 }
 </script>
