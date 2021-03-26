@@ -451,7 +451,7 @@ export default {
 
         // Inner page methods
         generateSentence(adverb, adjective, situation, objective, solution) {
-            return `Ce que je trouve ${adverb} ${adjective}, c'est quand ${situation}; du coup, pour ${objective}, ${solution}`
+            return `Ce que je trouve ${adverb} ${adjective}, c'est quand ${situation} Du coup, pour ${objective}, ${solution}`
         },
 
         generateBackgroundColor () { 
