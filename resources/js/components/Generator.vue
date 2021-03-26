@@ -10,10 +10,10 @@
         
 
         <div class="p-4 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-2">
-            <h3 class="fw-bold">Générateur de Réponses Incongrues pour Gérer les Risques d’Internement</h3>
-            <p class="col-md-12 fs-5">Fruit de plusieurs mois d’enquête à caractère auto-ethnographique et d’une triangulation fine et forte des données collectées, <br> le GRIGRI formule une réponse adaptée aux questions que vous pose votre intérieur confiné</p>
-        </div>
+            <div class="container-fluid py-2">
+                <h3 class="fw-bold">Générateur de Réponses Incongrues pour Gérer les Risques d’Internement</h3>
+                <p class="col-md-12 fs-5">Fruit de plusieurs mois d’enquête à caractère auto-ethnographique et d’une triangulation fine et forte des données collectées, <br> le GRIGRI formule une réponse adaptée aux questions que vous pose votre intérieur confiné</p>
+            </div>
         </div>
 
         <div id="generator-content" class="row mb-2 align-items-md-stretch">
@@ -30,18 +30,20 @@
             <div class="col-md-6">
                 <div class="h-100 p-4 rounded-3 border">
 
-                <div id="story" class="col-10 offset-1 border" v-bind:style="{ 'background-color': generateBackgroundColor()}">
-                        <form action="">
-                            <textarea 
-                                v-model="sentence" 
-                                class="form-control p-5 fs-5" 
-                                name="sentence" 
-                                id="sentence" 
-                                placeholder="Votre grigri" 
-                                v-bind:disabled="isTextAreaDisabled">
-                            </textarea>
-                        </form>
-                </div>
+                    <div id="story" class="col-10 offset-1 border">
+                        <div id="story-content" class="h-100">
+                            <form v-bind:style="{ 'background-color': generateBackgroundColor()}">
+                                <textarea 
+                                    v-model="sentence" 
+                                    class="form-control p-5 fs-5" 
+                                    name="sentence" 
+                                    id="sentence" 
+                                    placeholder="Votre grigri" 
+                                    v-bind:disabled="isTextAreaDisabled">
+                                </textarea>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-2 offset-1">
@@ -166,7 +168,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="situation-content" role="tabpanel" aria-labelledby="tab-2">
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 mb-3">
                                             Choissiez votre situation :  
                                         </div>
                                         <div class="col-12">
@@ -186,10 +188,10 @@
                                 </div>
                                 <div class="tab-pane fade" id="action-content" role="tabpanel" aria-labelledby="tab-3">
                                     <div class="row">
-                                        <div class="col-2">
+                                        <div class="col-12 mb-3">
                                             Choissiez votre état recherché :  
                                         </div>
-                                        <div class="col-10">
+                                        <div class="col-12">
                                             <div class="form-check" v-for="objective in choices.objectives" :key="objective.id">
                                                 <input class="form-check-input" type="checkbox" :value="objective.id" v-model="answer.objective">
                                                 <label class="form-check-label">
@@ -225,7 +227,8 @@
 </template>
 
 <script>
-var bootstrap = require('bootstrap')
+import domConvertor from 'dom-to-image'
+import { Tab, Modal } from 'bootstrap'
 
 export default {
 
@@ -249,11 +252,11 @@ export default {
                 solutions: []
             },
             story: {
-                adverb: 0,
-                adjective: 0,
-                situation: 0,
-                objective: 0,
-                solution: 0
+                adverb: null,
+                adjective: null,
+                situation: null,
+                objective: null,
+                solution: null
             },
             
             
@@ -315,13 +318,13 @@ export default {
         }
     },
 
-    created () {
-        this.fetchAllSuggestions()
+    async created () {
+        await this.fetchAllSuggestions()
     },
 
     methods: {
         // Page actions
-        sentenceAutoGeneration() {
+        async sentenceAutoGeneration() {
             let adverb = this.getRandomItem('adverb', this.choices.adverbs)
             let adjective = this.getRandomItem('adjective', this.choices.adjectives)
             let situation = this.getRandomItem('situation', this.choices.situations)
@@ -332,7 +335,7 @@ export default {
 
             this.sentence = this.generateSentence(adverb, adjective, situation, objective, solution)
 
-            this.fetchAllSuggestions()
+            await this.fetchAllSuggestions()
         },
 
         sentenceContribution() {
@@ -366,18 +369,18 @@ export default {
             let tabId = actualTab.id
             let id = parseInt(tabId.slice(4))
 
-            if (id == 4) {
+            if (id == 3) {
                 id = 0
             }
 
             let nextTab = document.querySelector('#tabGenerator li a#tab-' + (id + 1))
 
-            let tab = new bootstrap.Tab(nextTab)
+            let tab = new Tab(nextTab)
             tab.show()
         },
 
         closeModal () {
-            let modal = bootstrap.Modal.getInstance(document.getElementById('generator-modal'))
+            let modal = Modal.getInstance(document.getElementById('generator-modal'))
             modal.toggle()
 
             this.story.adverb = this.answer.adverb[0]
@@ -396,17 +399,17 @@ export default {
         },
 
         // Api calls
-        fetchAllSuggestions() {
-            this.fetchRandomSuggestions('adverbs', 5);
-            this.fetchRandomSuggestions('adjectives', 5);
-            this.fetchRandomSuggestions('situations', 5);
-            this.fetchRandomSuggestions('objectives', 5);
-            this.fetchRandomSuggestions('solutions', 1);
+        async fetchAllSuggestions() {
+            await this.fetchRandomSuggestions('adverbs', 5);
+            await this.fetchRandomSuggestions('adjectives', 5);
+            await this.fetchRandomSuggestions('situations', 5);
+            await this.fetchRandomSuggestions('objectives', 5);
+            await this.fetchRandomSuggestions('solutions', 1);
         },
 
-        fetchRandomSuggestions(type, number) {
+        async fetchRandomSuggestions(type, number) {
             const uri = `api/${type}/random/${number}`;
-            axios.get(uri).then(response => {
+            await axios.get(uri).then(response => {
                 if (response.status == 200) {
                     this.choices[type] = response.data;
 
@@ -417,10 +420,42 @@ export default {
             });
         },
 
-        submitNewSentence() {
-            axios.post('/api/sentences', {
+        async submitNewSentence() {
+            await this.generateSVGfromDOM()
 
-            });
+            let blob = localStorage.getItem('story')
+            console.log(blob)
+
+            var form = new FormData()
+
+            form.append('snapshot', blob)
+
+            if (this.story.adverb == null
+                || this.story.adjective == null
+                || this.story.situation == null
+                || this.story.objective == null
+                || this.story.solution == null
+            ) {
+                console.warn('Not undefined')
+                return
+            }
+
+            form.append('adverb', this.story.adverb)
+            form.append('adjective', this.story.adjective)
+            form.append('situation', this.story.situation)
+            form.append('objective', this.story.objective)
+            form.append('solution', this.story.solution)
+
+            await axios.post('/api/sentences', form)
+                .then((response) => {
+                    console.log(response)
+                    
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+
+            localStorage.removeItem('story');
         },
 
         // Inner page methods
@@ -451,6 +486,51 @@ export default {
             }
 
             return ''
+        }, 
+
+        async generateSVGfromDOM() {
+            let container = document.createElement('div');
+            container.id = 'story-container'
+
+            let storyNode = document.getElementById('story-content')
+
+            function filter (node) {
+                return (node.tagName !== 'i');
+            }
+
+            await domConvertor.toSvg(storyNode, {filter: filter})
+                .then((dataURL) => {
+                    let svgTag = dataURL.search('<svg ')
+                    localStorage.setItem('story', dataURL.slice(svgTag))
+                })
+                .catch((err) => {
+                    console.error('oops, something went wrong!', err);
+                })
+        }, 
+
+        dataURItoBlob(dataURI) {
+            // convert base64 to raw binary data held in a string
+            // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+            var byteString = atob(dataURI.split(',')[1]);
+
+            // separate out the mime component
+            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+            // write the bytes of the string to an ArrayBuffer
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            //Old Code
+            //write the ArrayBuffer to a blob, and you're done
+            //var bb = new BlobBuilder();
+            //bb.append(ab);
+            //return bb.getBlob(mimeString);
+
+            //New Code
+            return new Blob([ab], {type: mimeString});
         }
     }
 }

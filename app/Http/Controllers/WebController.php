@@ -28,6 +28,11 @@ class WebController extends Controller
         return $this->serveMedia('videos', $name);
     }
 
+    public function stories($name)
+    {
+        return $this->serveMedia('stories', $name);
+    }
+
     protected function serveMedia($type, $path)
     {
         if (Storage::disk($type)->exists($path)) {

@@ -50,22 +50,21 @@ export default {
     },
 
     mounted () {
-        if (this.stories.length > 0) {
-            this.render = true
-        }
+        
     },
 
     methods: {
         getStories() {
             axios.get('/api/sentences').then(response => {
-                this.stories = response.data
+                let data = response.data
+                this.stories = data
+
+                if (data.length > 0) {
+                    this.render = true
+                }
             });
         }
     }
 
 }
 </script>
-
-<style>
-
-</style>

@@ -24,23 +24,23 @@
             <!-- Page Heading -->
             <nav class="navbar navbar-light bg-white fixed-top shadow-sm" id ="navigation">
                 <div class="container">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="{{ env('APP_URL') }}">
                         <img src="{{ asset('/images/logo.png') }}" alt="" width="30" height="20" class="d-inline-block align-text-top">
                         CREPIS
                     </a>
 
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">Nos missions</a>
+                            <a class="nav-link" href="{{ env('APP_URL') . '#about' }}">Nos missions</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#methods">Nos méthodes</a>
+                            <a class="nav-link" href="{{ env('APP_URL') . '#methods' }}">Nos méthodes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#team">Notre équipe</a>
+                            <a class="nav-link" href="{{ env('APP_URL') . '#team' }}">Notre équipe</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#solutions">Nos solutions</a>
+                            <a class="nav-link" href="{{ env('APP_URL') . '#solutions' }}">Nos solutions</a>
                         </li>
                     </ul>
                     
