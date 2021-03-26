@@ -11,9 +11,11 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "bootstrap": "^4.0.0",
+        "bootstrap": "^5.0.0-beta2",
+        "bootstrap-icons": "^1.4.0",
         "browser-sync": "^2.26.14",
         "browser-sync-webpack-plugin": "^2.2.2",
+        "dom-to-image": "^2.6.0",
         "jquery": "^3.2",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
@@ -25,5 +27,8 @@
         "vue": "^2.5.17",
         "vue-loader": "^15.9.6",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "form-data": "^4.0.0"
     }
 }

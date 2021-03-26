@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Story extends Model
 {
     use HasFactory;
 
     protected $fillabe = ['file'];
+    protected $hidden = ['adverb_id', 'adjective_id', 'situation_id', 'objective_id', 'solution_id'];
 
     public function populateWords($words)
     {
@@ -25,10 +27,12 @@ class Story extends Model
         return $this;
     }
 
-    public function dealWithImage($file)
+    public function dealWithImage($content)
     {
-        $path = Storage::putFile('public', $file);
-        $this->file = $path;
+        $filename = Str::random(40) . '.svg';
+
+        Storage::disk('stories')->put($filename, $content);
+        $this->file = Storage::disk('stories')->url($filename);
 
         return $this;
     }

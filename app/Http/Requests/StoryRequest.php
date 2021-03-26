@@ -30,7 +30,7 @@ class StoryRequest extends FormRequest
             'complement'=> 'required|exists:complements,id',
             'objective' => 'required|exists:objectives,id',
             'solution' => 'required|exists:solutions,id',
-            'snapshot' => 'required|image'
+            'snapshot' => 'required|string'
         ];
     }
 }

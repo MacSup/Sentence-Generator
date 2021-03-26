@@ -30,8 +30,10 @@ class SentenceController extends Controller
         $story = new Story();
 
         $story->populateWords($request->except('snapshot'))
-            ->dealWithImage($request->file('snapshot'))
+            ->dealWithImage($request->only('snapshot'))
             ->save();
+
+        return $story;
     }
 
     /**

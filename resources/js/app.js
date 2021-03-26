@@ -18,8 +18,9 @@ window.Vue = require('vue').default;
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-import Board from './components/Board.vue'
+import Carousel from './components/Carousel.vue'
 import Generator from './components/Generator.vue'
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,7 +30,7 @@ import Generator from './components/Generator.vue'
 const app = new Vue({
     el: '#app',
     components: {
-        Board,
+        Carousel,
         Generator
     }
 });

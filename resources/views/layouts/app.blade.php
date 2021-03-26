@@ -9,22 +9,46 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
+        
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ mix('/js/manifest.js') }}" defer></script>
+        <script src="{{ mix('/js/vendor.js') }}" defer></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
+        
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-
+    <body class="d-flex w-100">
+        <div class="container-master d-flex w-100 h-100 mx-auto flex-column">
             <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header ?? '' }}
+            <nav class="navbar navbar-light bg-white fixed-top shadow-sm" id ="navigation">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ env('APP_URL') }}">
+                        <img src="{{ asset('/images/logo.png') }}" alt="" width="30" height="20" class="d-inline-block align-text-top">
+                        CREPIS
+                    </a>
+
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ env('APP_URL') . '#about' }}">Nos missions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ env('APP_URL') . '#methods' }}">Nos méthodes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ env('APP_URL') . '#team' }}">Notre équipe</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ env('APP_URL') . '#solutions' }}">Nos solutions</a>
+                        </li>
+                    </ul>
+                    
+                    <a href="https://discord.com/invite/5eGj4pbtNv">
+                        <img height="40" src="{{ asset('/images/discord.png') }}" >
+                    </a>
                 </div>
-            </header>
+            </nav>
 
             <!-- Page Content -->
             <main>
