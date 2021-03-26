@@ -27,6 +27,6 @@ Route::get('/adjectives/random/{number}', [AdjectiveController::class, 'random']
 Route::get('/situations/random/{number}', [SituationController::class, 'random']);
 Route::get('/objectives/random/{number}', [ObjectiveController::class, 'random']);
 Route::get('/solutions/random/{number}', [SolutionController::class, 'random']);
-Route::get('/complements/random/{number}', [ComplementController::class, 'random']);
 
-Route::apiResource('/sentences', SentenceController::class)->except(['update', 'destroy']);
+Route::apiResource('/sentences', SentenceController::class)->except(['show', 'update', 'destroy']);
+Route::get('/sentences/{id}', [SentenceController::class, 'show']);

@@ -13,14 +13,13 @@ class Story extends Model
     use HasFactory;
 
     protected $fillabe = ['file'];
-    protected $hidden = ['adverb_id', 'adjective_id', 'situation_id', 'objective_id', 'solution_id'];
+    //protected $hidden = ['adverb_id', 'adjective_id', 'situation_id', 'objective_id', 'solution_id'];
 
     public function populateWords($words)
     {
         $this->adverb()->associate(Adverb::find($words['adverb'])->first());
         $this->adjective()->associate(Adjective::find($words['adjective'])->first());
         $this->situation()->associate(Situation::find($words['situation'])->first());
-        $this->complement()->associate(Complement::find($words['complement'])->first());
         $this->objective()->associate(Objective::find($words['objective'])->first());
         $this->solution()->associate(Solution::find($words['solution'])->first());
 
@@ -50,11 +49,6 @@ class Story extends Model
     public function situation()
     {
         return $this->belongsTo(Situation::class);
-    }
-
-    public function complement()
-    {
-        return $this->belongsTo(Complement::class);
     }
 
     public function objective()

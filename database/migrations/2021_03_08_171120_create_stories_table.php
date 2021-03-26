@@ -15,11 +15,10 @@ class CreateStoriesTable extends Migration
     {
         Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->text('file')->nullable();
+            $table->text('file');
             $table->foreignId('adverb_id');
             $table->foreignId('adjective_id');
             $table->foreignId('situation_id');
-            $table->foreignId('complement_id');
             $table->foreignId('objective_id');
             $table->foreignId('solution_id');
             $table->timestamps();

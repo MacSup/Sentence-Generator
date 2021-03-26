@@ -15,7 +15,6 @@ use App\Models\Story;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Complement;
 
 class StoryTest extends TestCase
 {
@@ -24,7 +23,6 @@ class StoryTest extends TestCase
     protected $adverb;
     protected $adjective;
     protected $situation;
-    protected $complement;
     protected $objective;
     protected $solution;
 
@@ -35,7 +33,6 @@ class StoryTest extends TestCase
         $this->adverb = Adverb::factory()->create();
         $this->adjective = Adjective::factory()->create();
         $this->situation = Situation::factory()->create();
-        $this->complement = Complement::factory()->create();
         $this->objective = Objective::factory()->create();
         $this->solution = Solution::factory()->create();
     }
@@ -46,12 +43,12 @@ class StoryTest extends TestCase
             'adverb' => $this->adverb->id,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
-            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
-            'solution' => $this->solution->id
+            'solution' => $this->solution->id,
         ];
         $story = new Story();
         $story->populateWords($words);
+        $story->dealWithImage('file');
         $story->save();
 
         $this->assertDatabaseCount('stories', 1);
@@ -62,11 +59,10 @@ class StoryTest extends TestCase
 
     public function test_can_not_post_a_new_story_if_no_image_is_upload()
     {
-        $response = $this->json('post', '/api/stories', [
+        $response = $this->json('post', '/api/sentences', [
             'adverb' => $this->adverb->id,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
-            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
             'solution' => $this->solution->id
         ]);
@@ -77,11 +73,10 @@ class StoryTest extends TestCase
 
     public function test_can_not_post_a_new_story_if_word_doesnt_exists()
     {
-        $response = $this->json('post', '/api/stories', [
+        $response = $this->json('post', '/api/sentences', [
             'adverb' => $this->adverb->id + 10,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
-            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
             'solution' => $this->solution->id
         ]);
@@ -92,22 +87,17 @@ class StoryTest extends TestCase
 
     public function test_can_post_a_new_story()
     {
-        $file = UploadedFile::fake()->image('avatar.jpg');
-
-        $response = $this->json('post', '/api/stories', [
+        $response = $this->json('post', '/api/sentences', [
             'adverb' => $this->adverb->id,
             'adjective' => $this->adjective->id,
             'situation' => $this->situation->id,
-            'complement'=> $this->complement->id,
             'objective' => $this->objective->id,
             'solution' => $this->solution->id,
-            'snapshot' => $file,
+            'snapshot' => 'file_content',
         ]);
 
-        $response->assertStatus(200);
+        $response->assertStatus(201);
         $this->assertDatabaseCount('stories', 1);
-
-        Storage::assertExists('public/'.$file->hashName());
     }
 
     public function test_can_get_all_stoties()
@@ -115,7 +105,7 @@ class StoryTest extends TestCase
         $items = 10;
         Story::factory()->count($items)->create();
 
-        $response = $this->json('get', '/api/stories');
+        $response = $this->json('get', '/api/sentences');
 
         $response->assertStatus(200);
         $response->assertJsonCount($items);
@@ -126,7 +116,7 @@ class StoryTest extends TestCase
         $stories = Story::factory()->count(10)->create();
         $story = $stories->random(1)->first();
 
-        $response = $this->json('get', '/api/stories/'.$story->id);
+        $response = $this->json('get', '/api/sentences/'.$story->id);
 
         $response->assertStatus(200);
         $response->assertJsonFragment(['id' => $story->id]);

@@ -42,8 +42,9 @@ class SentenceController extends Controller
      * @param  \App\Models\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function show(Story $story)
+    public function show($id)
     {
+        $story = Story::find($id);
         return $story;
     }
 
