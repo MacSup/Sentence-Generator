@@ -1,35 +1,4 @@
 <x-app-layout>
-    <x-slot name="navbar">
-        <nav class="navbar navbar-light bg-white fixed-top shadow-sm" id ="navigation">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="{{ asset('/images/logo.png') }}" alt="" width="30" height="20" class="d-inline-block align-text-top">
-                    CREPIS
-                </a>
-
-                <ul class="nav nav-pills">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">Nos missions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#methods">Nos méthodes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#team">Notre équipe</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#solutions">Nos solutions</a>
-                    </li>
-                </ul>
-                
-                <a href="https://discord.com/invite/5eGj4pbtNv">
-                    <img height="40" src="{{ asset('/images/discord.png') }}" >
-                </a>
-            </div>
-
-        </nav>
-    </x-slot>
-
     <div class="masterhead">
         <section id="home">
             <header>

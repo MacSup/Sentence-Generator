@@ -1,11 +1,13 @@
 <template>
     <div class="container pt-2 h-100">
+        
         <header id="generator-nav" class="pb-3 mb-4 border-bottom">
         <a class="d-flex align-items-center text-dark text-decoration-none">
             <img src="favicon.ico" width="32" height="24" class="me-2"><title>GRIGRI</title>
             <span class="fs-4">GRIGRI</span>
         </a>
         </header>
+        
 
         <div class="p-4 mb-4 bg-light rounded-3">
         <div class="container-fluid py-2">
@@ -165,7 +167,7 @@
                                 <div class="tab-pane fade" id="situation-content" role="tabpanel" aria-labelledby="tab-2">
                                     <div class="row">
                                         <div class="col-12">
-
+                                            Choissiez votre situation :  
                                         </div>
                                         <div class="col-12">
                                             <div class="form-check" v-for="situation in choices.situations" :key="situation.id">
@@ -185,7 +187,7 @@
                                 <div class="tab-pane fade" id="action-content" role="tabpanel" aria-labelledby="tab-3">
                                     <div class="row">
                                         <div class="col-2">
-
+                                            Choissiez votre état recherché :  
                                         </div>
                                         <div class="col-10">
                                             <div class="form-check" v-for="objective in choices.objectives" :key="objective.id">
@@ -314,12 +316,7 @@ export default {
     },
 
     created () {
-        this.fetchRandomSuggestions('adverbs', 5);
-        this.fetchRandomSuggestions('adjectives', 5);
-        this.fetchRandomSuggestions('situations', 5);
-        this.fetchRandomSuggestions('objectives', 5);
-        this.fetchRandomSuggestions('solutions', 1);
-        
+        this.fetchAllSuggestions()
     },
 
     methods: {
@@ -330,15 +327,17 @@ export default {
             let situation = this.getRandomItem('situation', this.choices.situations)
             let objective = this.getRandomItem('objective', this.choices.objectives)
 
-            this.story.solution = this.choices.solutions[0].id;
-            let solution = this.choices.solutions[0].content;
+            this.story.solution = this.choices.solutions[0].id
+            let solution = this.choices.solutions[0].content
 
-            this.sentence = this.generateSentence(adverb, adjective, situation, objective, solution);
+            this.sentence = this.generateSentence(adverb, adjective, situation, objective, solution)
+
+            this.fetchAllSuggestions()
         },
 
         sentenceContribution() {
-            this.isTextAreaDisabled = false;
-            this.sentence = this.generateSentence('{adverbe}', '{adjectif}', '{situation}', '{objectif}', '{solution}');
+            this.isTextAreaDisabled = false
+            this.sentence = this.generateSentence('{adverbe}', '{adjectif}', '{situation}', '{objectif}', '{solution}')
         },
 
         sentenceDownload() {
@@ -364,8 +363,8 @@ export default {
         changeModalTabPage () {
             let actualTab = document.querySelector("#tabGenerator li a[aria-selected=true]")
 
-            let tabId = actualTab.id;
-            let id = parseInt(tabId.slice(4));
+            let tabId = actualTab.id
+            let id = parseInt(tabId.slice(4))
 
             if (id == 4) {
                 id = 0
@@ -397,16 +396,12 @@ export default {
         },
 
         // Api calls
-        getRandomItem(type, array) {
-            let item = array[Math.floor(Math.random() * array.length)];
-            console.log(item)
-            this.story[type] = item.id;
-
-            return item.content;
-        },
-
-        setSolutionItem() {
-            this.answer.solution.push(this.choices.solutions[0].id)
+        fetchAllSuggestions() {
+            this.fetchRandomSuggestions('adverbs', 5);
+            this.fetchRandomSuggestions('adjectives', 5);
+            this.fetchRandomSuggestions('situations', 5);
+            this.fetchRandomSuggestions('objectives', 5);
+            this.fetchRandomSuggestions('solutions', 1);
         },
 
         fetchRandomSuggestions(type, number) {
@@ -440,6 +435,13 @@ export default {
         },
 
         // "Private" methods
+        getRandomItem(type, array) {
+            let item = array[Math.floor(Math.random() * array.length)];
+            this.story[type] = item.id;
+
+            return item.content;
+        },
+
         getElementContent (type) {
             let id = this.answer[type][0];
 
