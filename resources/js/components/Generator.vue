@@ -131,18 +131,6 @@
                                         aria-selected="false"
                                     >Etat recherché</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <a 
-                                        class="nav-link" 
-                                        id="tab-4" 
-                                        data-bs-toggle="tab" 
-                                        data-bs-target="#solution-content" 
-                                        type="button" 
-                                        role="tab" 
-                                        aria-controls="solution-content" 
-                                        aria-selected="false"
-                                    >Solution</a>
-                                </li>
                             </ul>
 
                             <div class="tab-content" id="myTabContent">
@@ -215,15 +203,6 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="solution-content" role="tabpanel" aria-labelledby="tab-4">
-                                    <div class="row">
-
-                                        <div class="col-12 mt-4">
-                                            {{ selectedSolution }}
-                                        </div>
-
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

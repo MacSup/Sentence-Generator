@@ -14,9 +14,9 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
-        <script src="{{ asset('/js/manifest.js') }}" defer></script>
-        <script src="{{ asset('/js/vendor.js') }}" defer></script>
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ mix('/js/app.js') }}" defer></script>
+        <script src="{{ mix('/js/vendor.js') }}" defer></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
         
     </head>
     <body class="d-flex w-100">
