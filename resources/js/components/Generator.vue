@@ -444,7 +444,9 @@ export default {
         },
 
         submitNewSentence() {
-            axios.post('/story')
+            axios.post('/api/sentences', {
+
+            });
         },
 
         // Inner page methods
