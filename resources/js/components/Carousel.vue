@@ -1,30 +1,22 @@
 <template>
-    <div v-if="render" id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button v-for="story in stories" :key="story.id" 
-                type="button" 
-                data-bs-target="#carouselExampleIndicators" 
-                v-bind:data-bs-slide-to="story.id" 
-                class="active" 
-                aria-current="true" 
-                v-bind:aria-label="['Story', story.id + 1]"
-            ></button>
-        </div>
-        <div class="carousel-inner">
+    <div v-if="render" id="carousel-stories" class="carousel slide" data-bs-ride="carousel">
+        <div ref="inner" class="carousel-inner">
             <div v-for="story in stories" :key="story.id"
-                class="carousel-item active"
+                class="carousel-item text-center"
+                :class="isActiveItem(story.id)"
             >
                 <img 
                     id="caroussel-img" 
                     v-bind:src="story.file"
-                ></img>
+                />
+                
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-stories"  data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"  data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-stories"  data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -50,6 +42,9 @@ export default {
     },
 
     mounted () {
+        this.$nextTick(() => {
+            console.log(this.$refs['inner'])
+        })
         
     },
 
@@ -63,6 +58,14 @@ export default {
                     this.render = true
                 }
             });
+        },
+
+        isActiveItem(id) {
+            if (id == this.stories[0].id) {
+                return 'active'
+            }
+
+            return ''
         }
     }
 
