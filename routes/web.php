@@ -19,6 +19,6 @@ use App\Http\Controllers\WebController;
 Route::get('/', [WebController::class, 'home']);
 Route::get('/generator', [WebController::class, 'generator']);
 
-Route::get('images/{image}', [WebController::class, 'images']);
-Route::get('videos/{video}', [WebController::class, 'videos']);
-Route::get('stories/{story}', [WebController::class, 'stories']);
+Route::get('/images/{image}', [WebController::class, 'images']);
+Route::get('/videos/{video}', [WebController::class, 'videos']);
+Route::get('/stories/{story}', [WebController::class, 'stories']);
