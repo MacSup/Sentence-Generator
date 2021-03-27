@@ -6,6 +6,7 @@ use App\Models\Story;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\StoryRequest;
+use Illuminate\Support\Facades\Storage;
 
 class SentenceController extends Controller
 {
@@ -48,26 +49,11 @@ class SentenceController extends Controller
         return $story;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Story  $story
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Story $story)
+    public function download($id)
     {
-        //
-    }
+        $story = Story::find($id);
+        $fileparts = pathinfo($story->file);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Story  $story
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Story $story)
-    {
-        //
+        return Storage::disk('stories')->download($fileparts['basename']);
     }
 }

@@ -134,3 +134,15 @@ section {
     }
     
 }
+
+#generator-error {
+    z-index: 100;
+    float: right;
+    display: none;
+}
+
+#generator-submit {
+    z-index: 200;
+    position: relative;
+    float: right;
+}

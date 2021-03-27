@@ -30,3 +30,4 @@ Route::get('/solutions/random/{number}', [SolutionController::class, 'random']);
 
 Route::apiResource('/sentences', SentenceController::class)->except(['show', 'update', 'destroy']);
 Route::get('/sentences/{id}', [SentenceController::class, 'show']);
+Route::get('/sentences/{id}/download', [SentenceController::class, 'download']);

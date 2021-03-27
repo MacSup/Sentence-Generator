@@ -7,6 +7,16 @@
             <span class="fs-4">GRIGRI</span>
         </a>
         </header>
+
+        <div id="generator-submit" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Générateur</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <p :class="dom.toast.class"> {{ dom.toast.message }} </p>
+            </div>
+        </div>
         
 
         <div class="p-4 mb-4 bg-light rounded-3">
@@ -27,19 +37,19 @@
                     </ul>
                 </p>
             </div>
-            <div class="col-md-6">
-                <div class="h-100 p-4 rounded-3 border">
+            <div class="col-6">
+                <div class="h-100 p-4 rounded-3">
 
                     <div id="story" class="col-10 offset-1 border">
                         <div id="story-content" class="h-100">
-                            <form v-bind:style="{ 'background-color': generateBackgroundColor()}">
+                            <form v-bind:style="{ 'background-color': dom.form.background }">
                                 <textarea 
                                     v-model="sentence" 
                                     class="form-control p-5 fs-5" 
                                     name="sentence" 
                                     id="sentence" 
-                                    placeholder="Votre grigri" 
-                                    v-bind:disabled="isTextAreaDisabled">
+                                    :placeholder="dom.form.placeholder" 
+                                    :disabled="dom.form.isTextAreaDisabled">
                                 </textarea>
                             </form>
                         </div>
@@ -52,8 +62,8 @@
                     <div class="w-100 mb-4 btn-group-vertical">
                         <button 
                             type="button" 
-                            class="btn btn-outline-primary"
-                            v-on:click="submitNewSentence"
+                            class="btn btn-outline-success"
+                            v-on:click="sentenceSubmit"
                         >Submit</button>
                     </div>
                     
@@ -63,27 +73,29 @@
                             class="btn btn-outline-primary"
                             data-bs-toggle="modal" 
                             data-bs-target="#generator-modal"
+                            v-on:click="sentenceGeneration"
                         >Génération</button>
                         <button 
                             type="button" 
                             class="btn btn-outline-primary"
                             v-on:click="sentenceAutoGeneration"
-                        >C</button>
+                        >I.A.</button>
                     </div>
 
                     <div class="w-100 mb-4 btn-group-vertical">
-                        <button type="button" class="btn btn-outline-primary">Partagez</button>
-                        <button type="button" class="btn btn-outline-primary">Enregistrez</button>
-                        <button type="button" class="btn btn-outline-primary">Surprise du chef</button>
-                    </div>
-
-                    <div class="w-100 btn-group-vertical">
                         <button 
                             type="button" 
-                            class="btn btn-outline-primary"
+                            class="btn btn-outline-info"
                             v-on:click="sentenceContribution"
                         >Contribuez</button>
                     </div>
+
+                    <div class="w-100  btn-group-vertical">
+                        <button type="button" class="btn btn-outline-danger" v-on:click="sentenceShare">Partagez</button>
+                        <button type="button" class="btn btn-outline-danger" v-on:click="sentenceDownload">Téléchargez</button>
+                        <!-- <button type="button" class="btn btn-outline-danger">Surprise du chef</button> -->
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -93,7 +105,6 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Génération</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container">
@@ -223,18 +234,21 @@
             </div>
         </div>
 
+        <div id="generator-error" class="alert alert-danger" role="alert">
+            {{ dom.alert.message }}
+        </div>
+
     </div>
 </template>
 
 <script>
 import domConvertor from 'dom-to-image'
-import { Tab, Modal } from 'bootstrap'
+import { Tab, Modal, Toast } from 'bootstrap'
 
 export default {
 
     data () {
         return {
-            isTextAreaDisabled: true,
             isAnswered: false,
             sentence: null,
             answer: {
@@ -251,14 +265,21 @@ export default {
                 objectives: [],
                 solutions: []
             },
-            story: {
-                adverb: null,
-                adjective: null,
-                situation: null,
-                objective: null,
-                solution: null
-            },
-            
+            story: null,
+            dom: {
+                form: {
+                    isTextAreaDisabled: true,
+                    placeholder: 'Votre grigri',
+                    background: ''
+                },
+                alert: {
+                    message: ''
+                },
+                toast: {
+                    message: '',
+                    class: ''
+                }
+            }
             
         }
     },
@@ -309,6 +330,7 @@ export default {
                 });
 
                 let zIdx = len.find(el => el == 0);
+                console.log(zIdx)
 
                 if (typeof zIdx == "undefined") {
                     this.isAnswered = true;
@@ -320,38 +342,75 @@ export default {
 
     async created () {
         await this.fetchAllSuggestions()
+        this.dom.background = this.generateBackgroundColor()
     },
 
     methods: {
         // Page actions
+        async sentenceSubmit() {
+            await this.submitNewSentence()
+
+            this.resetAnswers()
+            this.toogleFormEdition()
+        },
+
+        sentenceGeneration() {
+            this.resetAnswers()
+            this.toogleFormEdition()
+
+            this.openModal()
+        },
+
         async sentenceAutoGeneration() {
+            this.resetAnswers()
+            this.toogleFormEdition()
+
             let adverb = this.getRandomItem('adverb', this.choices.adverbs)
             let adjective = this.getRandomItem('adjective', this.choices.adjectives)
             let situation = this.getRandomItem('situation', this.choices.situations)
             let objective = this.getRandomItem('objective', this.choices.objectives)
 
-            this.story.solution = this.choices.solutions[0].id
+            this.answer.solution[0] = this.choices.solutions[0].id 
             let solution = this.choices.solutions[0].content
 
             this.sentence = this.generateSentence(adverb, adjective, situation, objective, solution)
 
             await this.fetchAllSuggestions()
+            this.generateBackgroundColor()
         },
 
         sentenceContribution() {
-            this.isTextAreaDisabled = false
-            this.sentence = this.generateSentence('{adverbe}', '{adjectif}', '{situation}', '{objectif}', '{solution}')
+            this.resetAnswers()
+
+            this.dom.form.isTextAreaDisabled = false
+            this.dom.form.placeholder = this.generateSentence('{adverbe}', '{adjectif}', '{situation}', '{objectif}', '{solution}')
         },
 
-        sentenceDownload() {
+        async sentenceDownload() {
+            if (this.story == null) {
+                this.displayGeneratorAlert('Télécharger')
+            }
 
+            let id = this.story.id
+            await this.requestDownload(id)
         },
 
         sentenceShare() {
-
+            if (this.story == null) {
+                this.displayGeneratorAlert('Partager')
+            }
         },
 
         // Modal actions
+        openModal() {
+            let modal = Modal.getInstance(document.getElementById('generator-modal'))
+            modal.toggle()
+
+            let tabNode = document.querySelector('#tabGenerator li a');
+            let tab = new Tab(tabNode)
+            tab.show()
+        },
+
         buttonModalAction (text) {
             switch (text) {
                 case 'Suivant':
@@ -383,12 +442,6 @@ export default {
             let modal = Modal.getInstance(document.getElementById('generator-modal'))
             modal.toggle()
 
-            this.story.adverb = this.answer.adverb[0]
-            this.story.adjective = this.answer.adjective[0]
-            this.story.situation = this.answer.situation[0]
-            this.story.objective = this.answer.objective[0]
-            this.story.solution = this.answer.solution[0]
-
             this.sentence = this.generateSentence(
                 this.selectedAdverb, 
                 this.selectedAdjective, 
@@ -396,6 +449,8 @@ export default {
                 this.selectedObjective,
                 this.selectedSolution
             );
+
+            this.isAnswered = false;
         },
 
         // Api calls
@@ -414,7 +469,7 @@ export default {
                     this.choices[type] = response.data;
 
                     if (type == "solutions") {
-                        this.answer.solution.push(response.data[0].id)
+                        this.answer.solution[0] = response.data[0].id
                     }
                 }
             });
@@ -424,38 +479,43 @@ export default {
             await this.generateSVGfromDOM()
 
             let blob = localStorage.getItem('story')
-            console.log(blob)
 
             var form = new FormData()
 
             form.append('snapshot', blob)
 
-            if (this.story.adverb == null
-                || this.story.adjective == null
-                || this.story.situation == null
-                || this.story.objective == null
-                || this.story.solution == null
+            if (this.answer.adverb[0] == null
+                || this.answer.adjective[0] == null
+                || this.answer.situation[0] == null
+                || this.answer.objective[0] == null
+                || this.answer.solution[0] == null
             ) {
                 console.warn('Not undefined')
                 return
             }
 
-            form.append('adverb', this.story.adverb)
-            form.append('adjective', this.story.adjective)
-            form.append('situation', this.story.situation)
-            form.append('objective', this.story.objective)
-            form.append('solution', this.story.solution)
+            form.append('adverb', this.answer.adverb[0])
+            form.append('adjective', this.answer.adjective[0])
+            form.append('situation', this.answer.situation[0])
+            form.append('objective', this.answer.objective[0])
+            form.append('solution', this.answer.solution[0])
 
             await axios.post('/api/sentences', form)
                 .then((response) => {
-                    console.log(response)
-                    
+                    this.story = response.data
+                    this.displaySubmitToast(response.status)
                 })
                 .catch((err) => {
                     console.error(err)
+                    this.displaySubmitToast(err.response.status)
                 })
 
             localStorage.removeItem('story');
+        },
+
+        async requestDownload(id) {
+            let url = `/api/sentences/${id}/download`
+            window.open(url)
         },
 
         // Inner page methods
@@ -463,17 +523,55 @@ export default {
             return `Ce que je trouve ${adverb} ${adjective}, c'est quand ${situation} Du coup, pour ${objective}, ${solution}`
         },
 
-        generateBackgroundColor () { 
-            return "hsl(" + 360 * Math.random() + ',' +
+        generateBackgroundColor () {
+            this.dom.form.background = "hsl(" + 360 * Math.random() + ',' +
                     (25 + 70 * Math.random()) + '%,' + 
                     (85 + 10 * Math.random()) + '%)'
+        },
+
+        toogleFormEdition () {
+            this.dom.form.placeholder = "Votre grigri"
+            this.dom.form.isTextAreaDisabled = true
+        },
+
+        displayGeneratorAlert(action) {
+            this.dom.alert.message = `Action ${action} impossible ! Veuillez soumettre une proposition avant`
+            alert = document.querySelector('#generator-error')
+            alert.style.display = 'block';
+            
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 1000)
+        },
+
+        displaySubmitToast(code) {
+            let toastNode = document.querySelector("#generator-submit")
+            let toast = new Toast(toastNode)
+
+            switch (code) {
+                case 201:
+                    this.dom.toast.message = "Merci ! Soumission acceptée"
+                    this.dom.toast.class = "text-success"
+                    toast.show()
+                    break;
+                case 429:
+                    this.dom.toast.message = "Doucement ! Attend un peu avant de recommencer"
+                    this.dom.toast.class = "text-warning"
+                    toast.show()
+                    break;
+                case 500:
+                    this.dom.toast.message = "Oupss ! Une erreur est survenue"
+                    this.dom.toast.class = "text-error"
+                    toast.show()
+            }
         },
 
         // "Private" methods
         getRandomItem(type, array) {
             let item = array[Math.floor(Math.random() * array.length)];
-            this.story[type] = item.id;
+            this.answer[type][0] = item.id;
 
+            console.log(` test : ${item.content}`)
             return item.content;
         },
 
@@ -486,7 +584,16 @@ export default {
             }
 
             return ''
-        }, 
+        },
+
+        resetAnswers() {
+            this.answer.adverb = []
+            this.answer.adjective = []
+            this.answer.situation = []
+            this.answer.objective = []
+
+            this.sentence = ""
+        },
 
         async generateSVGfromDOM() {
             let container = document.createElement('div');
@@ -506,31 +613,6 @@ export default {
                 .catch((err) => {
                     console.error('oops, something went wrong!', err);
                 })
-        }, 
-
-        dataURItoBlob(dataURI) {
-            // convert base64 to raw binary data held in a string
-            // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-            var byteString = atob(dataURI.split(',')[1]);
-
-            // separate out the mime component
-            var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-            // write the bytes of the string to an ArrayBuffer
-            var ab = new ArrayBuffer(byteString.length);
-            var ia = new Uint8Array(ab);
-            for (var i = 0; i < byteString.length; i++) {
-                ia[i] = byteString.charCodeAt(i);
-            }
-
-            //Old Code
-            //write the ArrayBuffer to a blob, and you're done
-            //var bb = new BlobBuilder();
-            //bb.append(ab);
-            //return bb.getBlob(mimeString);
-
-            //New Code
-            return new Blob([ab], {type: mimeString});
         }
     }
 }
