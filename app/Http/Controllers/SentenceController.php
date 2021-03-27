@@ -33,7 +33,7 @@ class SentenceController extends Controller
                 [
                     'title' => "Regarde ça",
                     'file' => [
-                        'url' => env('APP_URL') . $story->file
+                        'url' => $story->file
                     ]
                     
                 ]
