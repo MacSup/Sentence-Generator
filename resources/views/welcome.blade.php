@@ -31,7 +31,7 @@
                         <div class="container py-2">
                             <div class="col-12 fs-6">
                                 En cette période de pandémie et de mutation des pratiques (tant économiques, que sociales, politiques, techniques, artistiques et écologiques), 
-                                le groupe de recherche du <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> se saisit de la question des « intérieurs soutenables ». 
+                                le groupe de recherche du <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> se saisit de la question des « <span class="fw-bold">intérieurs soutenables</span> ». 
                                 Alors que nombre de situations quotidiennes deviennent plus énervantes, révoltantes, désespérantes, anxiogènes, pénibles, crispantes ou absurdes, le <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> travaille à formuler des stratégies aisément réappropriables pour vous permettre de souffler un peu, tenir le coup, décompresser ou tout simplement traverser au mieux ces temps confinés.</div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             <h2 id="about-section-title">
                                 <i class="bi bi-diagram-2"></i>
                             </h2>
-                            Ses membres sont issu·e·s d'horizons différents mais tous animé·e·s d'une même motivation : chercher à décloisonner la pensée au-delà des limites imposées par des mesures de confinement ou autres restrictions collectives/individuelles.
+                            Ses membres sont issu·e·s d'horizons différents mais tous animé·e·s d'une même motivation : chercher à <span class="fw-bold">décloisonner la pensée</span> au-delà des limites imposées par des mesures de confinement ou autres restrictions collectives/individuelles.
                         </div>
                         <div class="col-4">
                             <h2 id="about-section-title">
@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="col-12 mt-5">
-                        Aujourd'hui, nos méthodes innovantes nous permettent de proposer des solutions de bien-être pour tous et toutes.<br>
+                        Aujourd'hui, nos méthodes innovantes nous permettent de proposer des <span class="fw-bold">solutions de bien-être</span> pour tous et toutes.<br>
                         Mais le travail doit se poursuivre, et vous aussi pouvez être <span class='text-success'>acteur ou actrice</span> <span class='text-danger'>du</span> <span class='text-info'>processus</span> !  
                     </div>
                 </div>
