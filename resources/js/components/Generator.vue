@@ -100,6 +100,8 @@
                         <button 
                             type="button" 
                             class="btn btn-outline-info"
+                            data-bs-toggle="modal" 
+                            data-bs-target="#contribute-modal"
                             v-on:click="sentenceContribution"
                         >Contribuez</button>
                     </div>
@@ -248,6 +250,29 @@
             </div>
         </div>
 
+        <div id="contribute-modal" class="modal fade"  tabindex="-1" aria-labelledby="contribute-modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contribution</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-2">
+                        <p> Pour contribuer, remplissez le formulaire </p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="mb-1">Une contribution valable est de la formule suivate : </p>
+                        <p>
+                            Ce que je trouve <span class="text-muted">{ici, un adverbe}</span> <span class="text-muted">{ici, une émtion}</span>, <br>
+                            c'est quand <span class="text-muted">{ici, une situation}</span><span class="fw-bold">.</span> <br>
+                            Du coup, pour <span class="text-muted">{ici, un état recherché}</span><span class="fw-bold">,</span> <span class="text-muted">{ici, une solution}.</span>
+                        </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <div id="generator-error" class="alert alert-danger" role="alert">
             {{ dom.alert.message }}
         </div>
@@ -347,7 +372,6 @@ export default {
                 });
 
                 let zIdx = len.find(el => el == 0);
-                console.log(zIdx)
 
                 if (typeof zIdx == "undefined") {
                     this.dom.modal.isAnswered = true;
@@ -406,6 +430,8 @@ export default {
         },
 
         sentenceContribution() {
+            this.openContributionModal()
+
             this.mode = "contribute"
             this.resetAnswers()
 
@@ -415,7 +441,8 @@ export default {
 
         async sentenceDownload() {
             if (this.story == null) {
-                this.displayGeneratorAlert('Télécharger')
+                let msg = `Action "Télécharger" impossible ! Veuillez soumettre une proposition avant`
+                this.displayGeneratorAlert(msg)
             }
 
             let id = this.story.id
@@ -424,13 +451,15 @@ export default {
 
         sentenceShare() {
             if (this.story == null) {
-                this.displayGeneratorAlert('Partager')
+                let msg = `Action "Partager" impossible ! Veuillez soumettre une proposition avant`
+                this.displayGeneratorAlert(msg)
             }
         },
 
         async sentenceSurprise() {
             if (this.story == null) {
-                this.displayGeneratorAlert('Surprise')
+                let msg = `Action "Surprise du Chef" impossible ! Veuillez soumettre une proposition avant`
+                this.displayGeneratorAlert(msg)
             }
 
             let container = document.querySelector("#story-content form")
@@ -441,7 +470,13 @@ export default {
         },
 
         // Modal actions
-        openModal() {
+        openContributionModal() {
+            console.log(document.getElementById('contribute-modal'))
+            let modal = Modal.getInstance(document.getElementById('contribute-modal'))
+            modal.toggle()
+        },
+
+        openGenerationModal() {
             let modal = Modal.getInstance(document.getElementById('generator-modal'))
             modal.toggle()
 
@@ -535,7 +570,8 @@ export default {
                 || this.answer.objective[0] == null
                 || this.answer.solution[0] == null
             ) {
-                console.warn('Not undefined')
+                let msg = "Générer une phrase pour pouvoir la soumettre"
+                this.displayGeneratorAlert(msg)
                 return
             }
 
@@ -593,9 +629,8 @@ export default {
             this.dom.form.placeholder = "Votre grigri"
             this.dom.form.isTextAreaDisabled = true
         },
-
-        displayGeneratorAlert(action) {
-            this.dom.alert.message = `Action ${action} impossible ! Veuillez soumettre une proposition avant`
+        displayGeneratorAlert(msg) {
+            this.dom.alert.message = msg
             alert = document.querySelector('#generator-error')
             alert.style.display = 'block';
             
@@ -636,7 +671,6 @@ export default {
             let item = array[Math.floor(Math.random() * array.length)];
             this.answer[type][0] = item.id;
 
-            console.log(` test : ${item.content}`)
             return item.content;
         },
 
@@ -693,7 +727,8 @@ export default {
             let feelings = ((this.sentence.slice(feelingIdx + feelingPart.length, situationIdx)).trim()).split(" ")
 
             if (feelings.length != 2) {
-                console.error('Feeling : error on length')
+                msg = "Attention ! Bien renseigné une émotion avec un adverbe"
+                this.displayGeneratorAlert(msg)
                 return
             }
 
@@ -709,7 +744,8 @@ export default {
             let status = ((this.sentence.slice(objectiveIdx + objectivePart.length)).trim()).split(',')
 
             if (status.length != 2) {
-                console.error('Status : error on length')
+                msg = "Attention ! Bien séparé l'état recherché de la solution avec une virgule";
+                this.displayGeneratorAlert(msg)
                 return
             }
 
