@@ -88,7 +88,7 @@
                         <p>
                             <h5>Le <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> compte 3 laboratoires de recherche : </h5>
                             <ul>
-                                <li class="text-success">La Famille Tout à Cramé</li>
+                                <li class="text-success">La Famille Tout a Cramé</li>
                                 <li class="text-danger">Le Droit à la Paresse</li>
                                 <li class="text-info">Ma Sorcière Bien Aimée</li>
                             </ul>

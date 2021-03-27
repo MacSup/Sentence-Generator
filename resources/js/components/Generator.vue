@@ -106,7 +106,7 @@
 
                     <div class="w-100  btn-group-vertical">
                         <button type="button" class="btn btn-outline-danger" v-on:click="sentenceShare">Partagez</button>
-                        <button type="button" class="btn btn-outline-danger" v-on:click="sentenceDownload">Téléchargez</button>
+                        <button ref="downlaod-button" type="button" class="btn btn-outline-danger" v-on:click="sentenceDownload">Téléchargez</button>
                         <!-- <button type="button" class="btn btn-outline-danger">Surprise du chef</button> -->
                     </div>
 
@@ -350,6 +350,8 @@ export default {
                 if (typeof zIdx == "undefined") {
                     this.isAnswered = true;
                 }
+
+
             },
             deep: true
         }
@@ -551,7 +553,8 @@ export default {
 
         async requestDownload(id) {
             let url = `/api/sentences/${id}/download`
-            window.open(url)
+
+            window.location.href = url;
         },
 
         // Inner page methods
