@@ -68,7 +68,7 @@ return [
 
         'stories' => [
             'driver' => 'local',
-            'root' => storage_path('app/images/stories'),
+            'root' => storage_path('app/stories'),
             'url' => env('APP_URL') . '/stories',
             'visibility' => 'public'
         ]
