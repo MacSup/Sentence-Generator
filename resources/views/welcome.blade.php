@@ -39,7 +39,7 @@
 
                 <div class="row text-center align-items-center">
                     <video id="methods-vid"autoplay muted loop>
-                        <source src="{{ asset('/videos/push&pull.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('/videos/push&pull-x1.5.mp4') }}" type="video/mp4">
                     </video>
                 </div>
 
