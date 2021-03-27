@@ -11,5 +11,10 @@ class AdverbController extends Controller
 {
     protected $model = Adverb::class;
     
-    use ApiRandom;
+    use ApiRandom, ApiContribution;
+    
+    protected function getModel()
+    {
+        return $this->model;
+    }
 }

@@ -88,12 +88,21 @@ section {
     scroll-snap-align: center;
 }
 
+#about-title {
+    text-align: center;
+}
+
+#about-section-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
 #methods-vid {
-    width: 80%;
-    -ms-transform: translateX(10%);
-    -moz-transform: translateX(10%);
-    -webkit-transform: translateX(10%);
-    transform: translateX(10%);
+    width: 90%;
+    -ms-transform: translateX(5%);
+    -moz-transform: translateX(5%);
+    -webkit-transform: translateX(5%);
+    transform: translateX(5%);
 }
 
 #team-img {

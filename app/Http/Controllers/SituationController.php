@@ -9,5 +9,10 @@ class SituationController extends Controller
 {
     protected $model = Situation::class;
     
-    use ApiRandom;
+    use ApiRandom, ApiContribution;
+
+    protected function getModel()
+    {
+        return $this->model;
+    }
 }

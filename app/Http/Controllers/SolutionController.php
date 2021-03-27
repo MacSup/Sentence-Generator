@@ -9,5 +9,10 @@ class SolutionController extends Controller
 {
     protected $model = Solution::class;
     
-    use ApiRandom;
+    use ApiRandom, ApiContribution;
+
+    protected function getModel()
+    {
+        return $this->model;
+    }
 }

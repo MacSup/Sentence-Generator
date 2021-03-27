@@ -23,10 +23,19 @@ use App\Http\Controllers\ComplementController;
 */
 
 Route::get('/adverbs/random/{number}', [AdverbController::class, 'random']);
+Route::post('/adverbs/contribute', [AdverbController::class, 'contribute']);
+
 Route::get('/adjectives/random/{number}', [AdjectiveController::class, 'random']);
+Route::post('/adjectives/contribute', [AdjectiveController::class, 'contribute']);
+
 Route::get('/situations/random/{number}', [SituationController::class, 'random']);
+Route::post('/situations/contribute', [SituationController::class, 'contribute']);
+
 Route::get('/objectives/random/{number}', [ObjectiveController::class, 'random']);
+Route::post('/objectives/contribute', [ObjectiveController::class, 'contribute']);
+
 Route::get('/solutions/random/{number}', [SolutionController::class, 'random']);
+Route::post('/solutions/contribute', [SolutionController::class, 'contribute']);
 
 Route::apiResource('/sentences', SentenceController::class)->except(['show', 'update', 'destroy']);
 Route::get('/sentences/{id}', [SentenceController::class, 'show']);

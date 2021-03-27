@@ -22,14 +22,45 @@
         <section id="about">
             <div class="container">
                 <div class="row justify-content">
-                    <div class="col-12">
-                        <p>Bienvenue sur le site du CREPIS, le Centre de Recherches et d'Expérimentations Poétiques pour des Intérieurs Soutenables.<br><br>
-                                        En cette période de pandémie et de mutation des pratiques (tant économiques, que sociales, politiques, techniques, artistiques et écologiques), le groupe de recherche du CREPIS se saisit de la question des « intérieurs soutenables ». Alors que nombre de situations quotidiennes deviennent plus énervantes, révoltantes, désespérantes, anxiogènes, pénibles, crispantes ou absurdes, le CREPIS travaille à formuler des stratégies aisément réappropriables pour vous permettre de souffler un peu, tenir le coup, décompresser ou tout simplement traverser au mieux ces temps confinés.<br><br>
-                                        Bien plus qu'un think-tank, le CREPIS s'est construit dans un souci de collégialité centrée sur l’humain, partant du constat qu'efficience pouvait être conjuguée avec résilience.<br><br>
-                                        Ses membres sont issu·e·s d'horizons différents mais tous animé·e·s d'une même motivation : chercher à décloisonner la pensée au-delà des limites imposées par des mesures de confinement ou autres restrictions collectives/individuelles.<br><br>
-                                        Grâce à une approche transdisciplinaire et holistique, dans le respect des gestes barrières et des standards de la recherche académique par les moyens de l'art (en toute indépendance et transparence), le CREPIS a su mettre à profit aussi bien la puissance de l'intelligence collective que les opportunités offertes par le digital.<br><br>
-                                        Aujourd'hui, nos méthodes innovantes nous permettent de proposer des solutions de bien-être pour tous et toutes.<br><br>
-                                        Mais le travail doit se poursuivre, et vous aussi pouvez être acteur ou actrice du processus !</p>
+                    <div id="about-title" class="col-12 mb-4">
+                        <h2>Bienvenue sur le site du <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span><h2>
+                        <h4 class="text-muted"> le <span class='text-success'>Centre de Recherches</span> et d'<span class='text-danger'>Expérimentations Poétiques</span> pour des <span class='text-info'>Intérieurs Soutenables.</span></h4>
+                    </div>
+
+                    <div class="p-4 mb-4 bg-light rounded-3">
+                        <div class="container py-2">
+                            <div class="col-12 fs-6">
+                                En cette période de pandémie et de mutation des pratiques (tant économiques, que sociales, politiques, techniques, artistiques et écologiques), 
+                                le groupe de recherche du <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> se saisit de la question des « <span class="fw-bold">intérieurs soutenables</span> ». 
+                                Alors que nombre de situations quotidiennes deviennent plus énervantes, révoltantes, désespérantes, anxiogènes, pénibles, crispantes ou absurdes, le <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> travaille à formuler des stratégies aisément réappropriables pour vous permettre de souffler un peu, tenir le coup, décompresser ou tout simplement traverser au mieux ces temps confinés.</div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4 mb-5">
+                        <div class="col-4">
+                            <h2 id="about-section-title">
+                                <i class="bi bi-people"></i>
+                            </h2>
+                            
+                            Bien plus qu'un think-tank, le <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> s'est construit dans un souci de collégialité centrée sur l’humain, partant du constat qu'efficience pouvait être conjuguée avec résilience.
+                        </div>
+                        <div class="col-4">
+                            <h2 id="about-section-title">
+                                <i class="bi bi-diagram-2"></i>
+                            </h2>
+                            Ses membres sont issu·e·s d'horizons différents mais tous animé·e·s d'une même motivation : chercher à <span class="fw-bold">décloisonner la pensée</span> au-delà des limites imposées par des mesures de confinement ou autres restrictions collectives/individuelles.
+                        </div>
+                        <div class="col-4">
+                            <h2 id="about-section-title">
+                                <i class="bi bi-award"></i>
+                            </h2>
+                            Grâce à une approche transdisciplinaire et holistique, dans le respect des gestes barrières et des standards de la recherche académique par les moyens de l'art (en toute indépendance et transparence), le <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> a su mettre à profit aussi bien la puissance de l'intelligence collective que les opportunités offertes par le digital.
+                        </div>
+                    </div>
+
+                    <div class="col-12 mt-5">
+                        Aujourd'hui, nos méthodes innovantes nous permettent de proposer des <span class="fw-bold">solutions de bien-être</span> pour tous et toutes.<br>
+                        Mais le travail doit se poursuivre, et vous aussi pouvez être <span class='text-success'>acteur ou actrice</span> <span class='text-danger'>du</span> <span class='text-info'>processus</span> !  
                     </div>
                 </div>
             </div>
@@ -38,7 +69,7 @@
             <div class="container">
 
                 <div class="row text-center align-items-center">
-                    <video id="methods-vid"autoplay muted loop>
+                    <video id="methods-vid" autoplay muted loop>
                         <source src="{{ asset('/videos/push&pull-x1.5.mp4') }}" type="video/mp4">
                     </video>
                 </div>
@@ -55,9 +86,9 @@
                     </div>
                     <div class="col-4 text-start">
                         <p>
-                            <h5>Le CREPIS compte 3 laboratoires de recherche : </h5>
+                            <h5>Le <span class='text-success'>CR</span><span class='text-danger'>EP</span><span class='text-info'>IS</span> compte 3 laboratoires de recherche : </h5>
                             <ul>
-                                <li class="text-success">La Famille Tout à Cramé</li>
+                                <li class="text-success">La Famille Tout a Cramé</li>
                                 <li class="text-danger">Le Droit à la Paresse</li>
                                 <li class="text-info">Ma Sorcière Bien Aimée</li>
                             </ul>

@@ -9,5 +9,10 @@ class AdjectiveController extends Controller
 {
     protected $model = Adjective::class;
     
-    use ApiRandom;
+    use ApiRandom, ApiContribution;
+
+    protected function getModel()
+    {
+        return $this->model;
+    }
 }
