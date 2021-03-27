@@ -263,7 +263,6 @@ export default {
 
     data () {
         return {
-            isAnswered: false,
             sentence: null,
             answer: {
                 adverb: [],
@@ -286,6 +285,9 @@ export default {
                     isTextAreaDisabled: true,
                     placeholder: 'Votre grigri',
                     background: ''
+                },
+                modal: {
+                    isAnswered: false,
                 },
                 alert: {
                     message: ''
@@ -323,13 +325,13 @@ export default {
 
         // Button change
         modalButtonClass () {
-            if (this.isAnswered) {
+            if (this.dom.modal.isAnswered) {
                 return 'btn-success'
             }
             return 'btn-primary'
         },
         modalButtonText () {
-            if (this.isAnswered) {
+            if (this.dom.modal.isAnswered) {
                 return 'Terminer'
             }
             return 'Suivant'
@@ -348,7 +350,7 @@ export default {
                 console.log(zIdx)
 
                 if (typeof zIdx == "undefined") {
-                    this.isAnswered = true;
+                    this.dom.modal.isAnswered = true;
                 }
 
 
@@ -373,6 +375,7 @@ export default {
 
             this.resetAnswers()
             this.toogleFormEdition()
+            this.resetModal()
         },
 
         sentenceGeneration() {
@@ -445,6 +448,8 @@ export default {
             let tabNode = document.querySelector('#tabGenerator li a');
             let tab = new Tab(tabNode)
             tab.show()
+
+            this.resetModal()
         },
 
         buttonModalAction (text) {
@@ -486,7 +491,11 @@ export default {
                 this.selectedSolution
             );
 
-            this.isAnswered = false;
+            this.resetModal();
+        },
+
+        resetModal() {
+            this.dom.modal.isAnswered = false;
         },
 
         // Api calls
