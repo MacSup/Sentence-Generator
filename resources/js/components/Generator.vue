@@ -166,7 +166,7 @@
                                 <div class="tab-pane fade show active" id="feeling-content" role="tabpanel" aria-labelledby="tab-1">
                                     <div class="row align-items-center">
                                         <div class="col-12 mb-3">
-                                            Choissiez votre émotion :  
+                                            Choississez votre émotion :  
                                         </div>
 
                                         <div class="col-6">
@@ -194,7 +194,7 @@
                                 <div class="tab-pane fade" id="situation-content" role="tabpanel" aria-labelledby="tab-2">
                                     <div class="row">
                                         <div class="col-12 mb-3">
-                                            Choissiez votre situation :  
+                                            Choississez votre situation :  
                                         </div>
                                         <div class="col-12">
                                             <div class="form-check" v-for="situation in choices.situations" :key="situation.id">
@@ -214,7 +214,7 @@
                                 <div class="tab-pane fade" id="action-content" role="tabpanel" aria-labelledby="tab-3">
                                     <div class="row">
                                         <div class="col-12 mb-3">
-                                            Choissiez votre état recherché :  
+                                            Choississez votre état recherché :  
                                         </div>
                                         <div class="col-12">
                                             <div class="form-check" v-for="objective in choices.objectives" :key="objective.id">
