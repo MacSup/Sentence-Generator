@@ -107,7 +107,7 @@
                     <div class="w-100  btn-group-vertical">
                         <button type="button" class="btn btn-outline-danger" v-on:click="sentenceShare">Partagez</button>
                         <button ref="downlaod-button" type="button" class="btn btn-outline-danger" v-on:click="sentenceDownload">Téléchargez</button>
-                        <!-- <button type="button" class="btn btn-outline-danger">Surprise du chef</button> -->
+                        <!-- <button type="button" class="btn btn-outline-danger" v-on:click="sentenceSurprise">Surprise du chef</button> -->
                     </div>
 
                 </div>
@@ -423,6 +423,18 @@ export default {
             if (this.story == null) {
                 this.displayGeneratorAlert('Partager')
             }
+        },
+
+        async sentenceSurprise() {
+            if (this.story == null) {
+                this.displayGeneratorAlert('Surprise')
+            }
+
+            let container = document.querySelector("#story-content form")
+            container.style.background = "url('https://source.unsplash.com/qkfxBc2NQ18') black no-repeat center center scroll";
+
+            let id = this.story.id
+            await this.requestDownload(id)
         },
 
         // Modal actions
