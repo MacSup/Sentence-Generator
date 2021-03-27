@@ -9,5 +9,10 @@ class ObjectiveController extends Controller
 {
     protected $model = Objective::class;
     
-    use ApiRandom;
+    use ApiRandom, ApiContribution;
+
+    protected function getModel()
+    {
+        return $this->model;
+    }
 }

@@ -27,15 +27,29 @@
         </div>
 
         <div id="generator-content" class="row mb-2 align-items-md-stretch">
-            <div class="col-3 pt-4">
-                <h5 class="text-center mb-2"> Comment utiliser le GRIGRI ? </h5>
-                <p>
-                    <ul>
-                        <li>Cliquez sur le bouton "Generation"</li>
-                        <li>Suivez les instructions</li>
-                        <li>Cliquez sur le bouton "Submit"</li>
-                    </ul>
+            <div class="col-4 pt-4">
+                
+                <h6 class="fw-bold mb-2">Comment utiliser le GRIGRI ?</h6>
+                <p class="fw-lighter lh-1">
+                    Cliquez sur "Generation" et suivez les instructions. <br>
+                    Cliquez sur "Submit" pour soumettre votre réponse. <br>
+                    Cliquez sur "Télécharger" pour recevoir votre réponse <br>
                 </p>
+
+                <h6 class="fw-bold mt-5 mb-2">Vous pensez ne rencontrer aucune situation problématique ?</h6>
+                <p class="fw-lighter lh-1">
+                    Faites confiance à l’IA spécifiquement développée au sein des laboratoires du CREPIS qui concevra un problème spécialement pour vous et vous offrira gratuitement la solution à adopter pour y remédier. <br>
+                    Pour ce faire, cliquez sur "AI du GRIGRI".
+                </p>
+
+                <h6 class="fw-bold mt-5 mb-2">Toujours pas satisfait·e ?</h6>
+                <p class="fw-lighter lh-1">
+                    Aidez-nous à améliorer nos services en partageant votre expérience. <br>
+                    Cliquez sur "Contribuez" et remplissez le formulaire à votre disposition. <br>
+                    Cliquez sur "Submit" pour intégrer votre réponse à nos bases de données. <br>
+                </p>
+
+
             </div>
             <div class="col-6">
                 <div class="h-100 p-4 rounded-3">
@@ -56,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-2 offset-1">
+            <div class="col-2">
                 <div class="h-100 align-self-end p-4 rounded-3 align-items-bottom">
 
                     <div class="w-100 mb-4 btn-group-vertical">
@@ -266,6 +280,7 @@ export default {
                 solutions: []
             },
             story: null,
+            mode: 'auto',
             dom: {
                 form: {
                     isTextAreaDisabled: true,
@@ -348,6 +363,10 @@ export default {
     methods: {
         // Page actions
         async sentenceSubmit() {
+            if (this.mode == 'contribute') {
+                await this.parseContribution()
+            }
+
             await this.submitNewSentence()
 
             this.resetAnswers()
@@ -355,6 +374,7 @@ export default {
         },
 
         sentenceGeneration() {
+            this.mode = "manual"
             this.resetAnswers()
             this.toogleFormEdition()
 
@@ -362,6 +382,7 @@ export default {
         },
 
         async sentenceAutoGeneration() {
+            this.mode = "auto"
             this.resetAnswers()
             this.toogleFormEdition()
 
@@ -380,6 +401,7 @@ export default {
         },
 
         sentenceContribution() {
+            this.mode = "contribute"
             this.resetAnswers()
 
             this.dom.form.isTextAreaDisabled = false
@@ -513,6 +535,20 @@ export default {
             localStorage.removeItem('story');
         },
 
+        async submitAContribution(parts) {
+            let keys = Object.keys(parts)
+            for (let el of keys) {
+                
+                await axios.post(`api/${el}s/contribute`, {
+                    content: parts[el].content
+                }).then(response => {
+                        this.answer[el][0] = response.data.id
+                    }).catch(err => {
+                        console.error('api : error', err)
+                    })
+            }
+        },
+
         async requestDownload(id) {
             let url = `/api/sentences/${id}/download`
             window.open(url)
@@ -552,6 +588,11 @@ export default {
                 case 201:
                     this.dom.toast.message = "Merci ! Soumission acceptée"
                     this.dom.toast.class = "text-success"
+                    toast.show()
+                    break;
+                case 422:
+                    this.dom.toast.message = "Aie ! Soumission impossible"
+                    this.dom.toast.class = "text-warning"
                     toast.show()
                     break;
                 case 429:
@@ -613,6 +654,68 @@ export default {
                 .catch((err) => {
                     console.error('oops, something went wrong!', err);
                 })
+        },
+
+        async parseContribution() {
+            let feelingPart = 'ce que je trouve'
+            let feelingIdx = this.sentence.search(feelingPart)
+
+            let situationPart = `, c'est quand `
+            let situationIdx = this.sentence.search(situationPart)
+
+            let objectivePart = `Du coup, pour `
+            let objectiveIdx = this.sentence.search(objectivePart)
+
+            let feelings = ((this.sentence.slice(feelingIdx + feelingPart.length, situationIdx)).trim()).split(" ")
+
+            if (feelings.length != 2) {
+                console.error('Feeling : error on length')
+                return
+            }
+
+            let adverb = feelings[0].trim()
+            let adjective = feelings[1].trim()
+
+            let situation = (this.sentence.slice(situationIdx + situationPart.length, objectiveIdx)).trim()
+
+            if (!situation.endsWith('.')) {
+                solution += '.'
+            }
+
+            let status = ((this.sentence.slice(objectiveIdx + objectivePart.length)).trim()).split(',')
+
+            if (status.length != 2) {
+                console.error('Status : error on length')
+                return
+            }
+
+            let objective = status[0].trim()
+            let solution = status[1].trim()
+
+            if (!solution.endsWith('.')) {
+                solution += '.'
+            }
+
+            let parts = {
+                'adverb': {
+                    content: adverb
+                },
+                'adjective': {
+                    content: adjective
+                },
+                'situation': {
+                    content: situation
+                },
+                'objective': {
+                    content: objective
+                },
+                'solution': {
+                    content: solution
+                }
+            }
+
+            await this.submitAContribution(parts)
+
         }
     }
 }

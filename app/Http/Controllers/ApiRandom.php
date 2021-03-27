@@ -9,9 +9,4 @@ trait ApiRandom
         $class = $this->getModel();
         return $class::randomelyChose($number);
     }
-
-    protected function getModel()
-    {
-        return $this->model;
-    }
 }
