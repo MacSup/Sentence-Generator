@@ -17,11 +17,11 @@ class Story extends Model
 
     public function populateWords($words)
     {
-        $this->adverb()->associate(Adverb::find($words['adverb'])->first());
-        $this->adjective()->associate(Adjective::find($words['adjective'])->first());
-        $this->situation()->associate(Situation::find($words['situation'])->first());
-        $this->objective()->associate(Objective::find($words['objective'])->first());
-        $this->solution()->associate(Solution::find($words['solution'])->first());
+        $this->adverb()->associate(Adverb::find($words['adverb']));
+        $this->adjective()->associate(Adjective::find($words['adjective']));
+        $this->situation()->associate(Situation::find($words['situation']));
+        $this->objective()->associate(Objective::find($words['objective']));
+        $this->solution()->associate(Solution::find($words['solution']));
 
         return $this;
     }
