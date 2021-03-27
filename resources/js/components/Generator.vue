@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="w-100  btn-group-vertical">
-                        <button type="button" class="btn btn-outline-danger" v-on:click="sentenceShare">Partagez</button>
+                        <button type="button" class="btn btn-outline-danger" v-on:click="sentenceShare" disabled>Partagez</button>
                         <button ref="downlaod-button" type="button" class="btn btn-outline-danger" v-on:click="sentenceDownload">Téléchargez</button>
                         <!-- <button type="button" class="btn btn-outline-danger" v-on:click="sentenceSurprise">Surprise du chef</button> -->
                     </div>
