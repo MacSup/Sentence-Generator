@@ -258,7 +258,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-2">
-                        <p> Pour contribuer, remplissez le formulaire </p>
+                        <p> Pour contribuer, remplissez le formulaire (attention à la case)</p>
                     </div>
                     <div class="mb-4">
                         <p class="mb-1">Une contribution valable est de la formule suivate : </p>
@@ -471,7 +471,6 @@ export default {
 
         // Modal actions
         openContributionModal() {
-            console.log(document.getElementById('contribute-modal'))
             let modal = Modal.getInstance(document.getElementById('contribute-modal'))
             modal.toggle()
         },
@@ -564,6 +563,9 @@ export default {
 
             form.append('snapshot', blob)
 
+            if (this.mode !== "contribute") {
+
+            }
             if (this.answer.adverb[0] == null
                 || this.answer.adjective[0] == null
                 || this.answer.situation[0] == null
@@ -715,16 +717,19 @@ export default {
         },
 
         async parseContribution() {
-            let feelingPart = 'ce que je trouve'
-            let feelingIdx = this.sentence.search(feelingPart)
+            let phrase = this.sentence
+            phrase = phrase.charAt(0).toUpperCase() + phrase.slice(1);
 
-            let situationPart = `, c'est quand `
-            let situationIdx = this.sentence.search(situationPart)
+            let feelingPart = 'Ce que je trouve'
+            let feelingIdx = phrase.search(feelingPart)
 
-            let objectivePart = `Du coup, pour `
-            let objectiveIdx = this.sentence.search(objectivePart)
+            let situationPart = `c'est quand`
+            let situationIdx = phrase.search(situationPart)
 
-            let feelings = ((this.sentence.slice(feelingIdx + feelingPart.length, situationIdx)).trim()).split(" ")
+            let objectivePart = `Du coup, pour`
+            let objectiveIdx = phrase.search(objectivePart)
+
+            let feelings = ((phrase.slice(feelingIdx + feelingPart.length, situationIdx)).trim()).split(" ")
 
             if (feelings.length != 2) {
                 let msg = "Attention ! Bien renseigné une émotion avec un adverbe"
@@ -735,13 +740,13 @@ export default {
             let adverb = feelings[0].trim()
             let adjective = feelings[1].trim()
 
-            let situation = (this.sentence.slice(situationIdx + situationPart.length, objectiveIdx)).trim()
+            let situation = (phrase.slice(situationIdx + situationPart.length, objectiveIdx)).trim()
 
             if (!situation.endsWith('.')) {
                 solution += '.'
             }
 
-            let status = ((this.sentence.slice(objectiveIdx + objectivePart.length)).trim()).split(',')
+            let status = ((phrase.slice(objectiveIdx + objectivePart.length)).trim()).split(',')
 
             if (status.length != 2) {
                 let msg = "Attention ! Bien séparé l'état recherché de la solution avec une virgule";
@@ -773,6 +778,8 @@ export default {
                     content: solution
                 }
             }
+
+            console.log(parts)
 
             await this.submitAContribution(parts)
 
