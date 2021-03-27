@@ -727,7 +727,7 @@ export default {
             let feelings = ((this.sentence.slice(feelingIdx + feelingPart.length, situationIdx)).trim()).split(" ")
 
             if (feelings.length != 2) {
-                msg = "Attention ! Bien renseigné une émotion avec un adverbe"
+                let msg = "Attention ! Bien renseigné une émotion avec un adverbe"
                 this.displayGeneratorAlert(msg)
                 return
             }
@@ -744,7 +744,7 @@ export default {
             let status = ((this.sentence.slice(objectiveIdx + objectivePart.length)).trim()).split(',')
 
             if (status.length != 2) {
-                msg = "Attention ! Bien séparé l'état recherché de la solution avec une virgule";
+                let msg = "Attention ! Bien séparé l'état recherché de la solution avec une virgule";
                 this.displayGeneratorAlert(msg)
                 return
             }
