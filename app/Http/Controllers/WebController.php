@@ -36,7 +36,7 @@ class WebController extends Controller
     protected function serveMedia($type, $path)
     {
         if (Storage::disk($type)->exists($path)) {
-            return response()->file(Storage::disk($type)->path($path));
+            return response()->file(Storage::disk($type)->path($path), ['Connection' => 'close']);
         }
 
         return response('Not found', 404);
